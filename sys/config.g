@@ -7,16 +7,9 @@
 M575 P1 S1 B57600												; enable support for PanelDue
 G90																; send absolute coordinates...
 M83																; ...but relative extruder moves
-M550 P"HSP1-I"													; set printer name
 
 ; Wait a moment for the CAN expansion boards to start
 G4 S2
-
-; Network
-;M552 P0.0.0.0 S1												; enable network and acquire dynamic address via DHCP
-M586 P0 S1														; enable HTTP
-M586 P1 S0														; disable FTP
-M586 P2 S0														; disable Telnet
 
 ; Drives
 M569 P1.0 S1 R0 T3.0											; physical drive 1.0 goes forwards (U-axis)
@@ -93,7 +86,7 @@ G10 P1 U-0.6 Y0.3 Z0.1											; set tool 1 axis offsets
 G10 P1 R0 S0													; set initial tool 1 active and standby temperatures to 0C
 M591 D1 P3 C"21.io1.in" S1										; extruder 1 filament monitor
 
-M563 P2 D0:1 H1:2 X0:3 F2:3 S"Duplicator"						; define tool 2, "duplicator mode"
+M563 P2 D0:1 H1:2 X0:3 F2:3 L0 S"Duplicator"					; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U-320 S0 R0										; set tool offsets and temperatures
 G10 P2 R0 S0													; set initial tool 1 active and standby temperatures to 0C
 M567 P2 E1:1													; set mix ratio 100% on both extruders
