@@ -18,7 +18,7 @@ M569 P1.2 S0 R0 T3.0:3.0:5.0:0									; physical drive 1.2 goes forwards (Y-axi
 M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.2               (Y-Axis)
 M569 P0.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.0 goes forwards (Z-axis, Front-Left)
 M569 P0.1 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.1 goes forwards (Z-axis, Rear-Left)
-M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right
+M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right)
 M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
@@ -46,7 +46,7 @@ M558 K0 P8 C"20.io0.in" H8 F300 T9000 A3 S0.01					; Setup probe input
 G31 K0 P500 X-32.0 Y47.0 Z4.20									; Set rough probe parameters
 ;M558 P5 C"20.io0.out" H5 F120 T30000							; set Z probe type to switch and the dive height + speeds
 ;G31 P500 X0 Y0 Z-2.5											; set Z probe trigger value, offset and trigger height
-M557 X30:600 Y120:600 P7										; define mesh grid
+M557 X30:600 Y80:600 P7							    			; define mesh grid
 
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" T100000 B4138					; configure sensor 0 as thermistor on pin temp0
