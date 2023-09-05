@@ -1,7 +1,7 @@
 if exists(param.S) && exists(param.R)
 	var messageBoxTitle = "Unloading " ^ {param.R}
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message
-	M568 S{param.S}			; Heat up the current tool
+	M568 S{param.S} A2		; Heat up the current tool
 	M116					; Wait for the temperatures to be reached
 	M291 P"Retracting filament..." R{var.messageBoxTitle} T5 ; Display another message
 	M83						; Extruder to relative mode
@@ -13,4 +13,4 @@ if exists(param.S) && exists(param.R)
 	M568 A1					; Set tool to standby temps
 	M291 P"Remove filament from machine" R{var.messageBoxTitle} S1
 else
-	echo "This macro is meant to be run as part of the filament feature"
+	echo "This macro is meant to be run as part of the Duet filament feature"
