@@ -1,0 +1,5 @@
+/sys/accelerometer*
+/sys/config.g.bak
+/sys/config-override.g
+/sys/*.json
+/sys/*.csv
