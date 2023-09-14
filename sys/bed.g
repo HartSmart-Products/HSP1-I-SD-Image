@@ -17,6 +17,10 @@ G30 P0 X30 Y80 Z-99999					; probe near a leadscrew
 G30 P1 X30 Y600 Z-99999					; probe near a leadscrew
 G30 P2 X600 Y600 Z-99999				; probe near a leadscrew
 G30 P3 X600 Y80 Z-99999 S4				; probe near a leadscrew and calibrate 4 motors
+
+; rehome Z
+G0 X330.0 Y330.0 F{global.rapid_speed}	; move to probe position
+G30										; probe the bed and set Z height
 M402									; return probe to dock
 
 

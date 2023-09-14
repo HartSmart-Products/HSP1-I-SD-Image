@@ -4,6 +4,8 @@ if !exists(global.tool_params)
 	global tool_params = null
 	global t0_nozzle_diameter = 0.0
 	global t1_nozzle_diameter = 0.0
+	global t0_filament = ""
+	global t1_filament = ""
 
 ; --- Modify values below here ---
 

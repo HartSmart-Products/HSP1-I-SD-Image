@@ -3,3 +3,4 @@
 /sys/config-override.g
 /sys/*.json
 /sys/*.csv
+sys/resurrect.g

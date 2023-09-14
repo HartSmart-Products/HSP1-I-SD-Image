@@ -18,16 +18,16 @@ M569 P1.2 S0 R0 T3.0:3.0:5.0:0									; physical drive 1.2 goes forwards (Y-axi
 M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.2               (Y-Axis)
 M569 P0.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.0 goes forwards (Z-axis, Front-Left)
 M569 P0.1 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.1 goes forwards (Z-axis, Rear-Left)
-M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right)
+M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right
 M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
 M584 U1.0 X1.1 Y1.2:1.3 Z0.0:0.1:0.2:0.3 E20.0:21.0				; set drive mapping
-M92 U125.00 X125.00 Y62.50 Z4000.00 E408.50:408.50				; set steps per mm
+M92 U128.00 X128.00 Y64.00 Z4000.00 E408.50:408.50				; set steps per mm
 M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min)
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min)
 M201 U3000.0 X3000.00 Y3000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2)
-M906 E600:600													; set motor currents (mA)
+M906 E700:700													; set motor currents (mA)
 M84 S0															; Disable motor idle current reduction
 
 ; Axis Limits
@@ -51,19 +51,19 @@ M557 X30:600 Y80:600 P7							    			; define mesh grid
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" T100000 B4138					; configure sensor 0 as thermistor on pin temp0
 M950 H0 Q10 C"out3" T0											; create bed heater output on out3 and map it to sensor 0
-M307 H0 B1 S1.00												; enable bang-bang mode for the bed heater and set PWM limit
+M307 H0 B0 S1.00												; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0															; map heated bed to heater 0
 M143 H0 S120													; set temperature limit for heater 0 to 120C
 
 M308 S1 P"20.temp0" Y"pt1000"									; sensor 1 (toolboard)
 M950 H1 C"20.out0" T1											; create heater 1 and map sensor 1 (toolboard)
-M307 H1 B0 S1.00												; disable bang-bang mode for heater  and set PWM limit
-M143 H1 S280													; set temperature limit for heater 1 to 280C
+M307 H1 B0 S0.80												; disable bang-bang mode for heater  and set PWM limit
+M143 H1 S320													; set temperature limit for heater 1 to 280C
 
 M308 S2 P"21.temp0" Y"pt1000"									; sensor 2 (toolboard)
 M950 H2 C"21.out0" T2											; create heater 2 and map sensor 2 (toolboard)
-M307 H2 B0 S1.00												; disable bang-bang mode for heater  and set PWM limit
-M143 H2 S280													; set temperature limit for heater 2 to 280C
+M307 H2 B0 S0.80												; disable bang-bang mode for heater  and set PWM limit
+M143 H2 S320													; set temperature limit for heater 2 to 280C
 
 ; Fans
 M950 F0 C"20.out2" Q500											; create fan 0 on pin 1.out6 and set its frequency
@@ -78,17 +78,17 @@ M106 P3 C"Airpump secondary" S0 H-1								; (BERDAIR) set fan 3 name and value.
 ; Tools
 M563 P0 D0 H1 F2 S"Left"										; define tool 0
 G10 P0 X0 Y0 Z0													; set tool 0 axis offsets
-G10 P0 R0 S														; set initial tool 0 active and standby temperatures to 0C
+M568 P0 R0 S0														; set initial tool 0 active and standby temperatures to 0C
 M591 D0 P3 C"20.io1.in" S1										; extruder 0 filament monitor
 
 M563 P1 D1 X3 H2 F3 S"Right"									; define tool 1
-G10 P1 U-0.6 Y0.3 Z0.1											; set tool 1 axis offsets
-G10 P1 R0 S0													; set initial tool 1 active and standby temperatures to 0C
+G10 P1 U-0.6 Y0.3 Z0											; set tool 1 axis offsets
+M568 P1 R0 S0													; set initial tool 1 active and standby temperatures to 0C
 M591 D1 P3 C"21.io1.in" S1										; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 L0 S"Duplicator"					; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U-320 S0 R0										; set tool offsets and temperatures
-G10 P2 R0 S0													; set initial tool 1 active and standby temperatures to 0C
+M568 P2 R0 S0													; set initial tool 1 active and standby temperatures to 0C
 M567 P2 E1:1													; set mix ratio 100% on both extruders
 
 ; Accelerometers
@@ -102,7 +102,7 @@ M950 P0 C"0.out4" Q0											; (BOFA)
 M42 P0 S1.0														; (BOFA)
 
 ; Input Shaper
-M593 P"mzv" F20.0
+;M593 P"mzv" F20.0
 
 ; Execute parameter macros
 M98 P"0:/sys/Printer Parameters/probe_params.g" 
