@@ -95,6 +95,14 @@ M567 P2 E1:1													; set mix ratio 100% on both extruders
 M955 P20.0 I56													; left toolhead accelerometer
 M955 P21.0 I56													; righ toolhead accelerometer
 
+; Temperature Monitoring
+M308 S10 Y"mcu-temp" A"Primary 6XD MCU"							; defines sensor 10 as MCU temperature sensor
+M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"			; defines sensor 11 as MCU temperature sensor
+M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"			; defines sensor 12 as MCU temperature sensor
+M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"	; defines sensor 13 as stepper driver temperature sensor
+M308 S14 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"			; defines sensor 14 as MCU temperature sensor
+M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"	; defines sensor 15 as stepper driver temperature sensor
+
 ; Miscellaneous
 M501															; load saved parameters from non-volatile memory
 M911 S10 R11 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"				; set voltage thresholds and actions to run on power loss
