@@ -2,11 +2,6 @@
 ; called to home the Z axis
 ;
 ; Home Z using the Z probe mounted on the X carriage
-if !move.axes[3].homed				; If the printer hasn't been homed, home it
-    M98 P"0:/sys/homeu.g"			; make sure the U carriage is out of the way
-else
-	G0 U{move.axes[3].max} F3000
-
 M401								; deploy probe
 if global.probe_deployed == false	; check if the deploy macro completed successfully
 	abort "Probe deploy error"
