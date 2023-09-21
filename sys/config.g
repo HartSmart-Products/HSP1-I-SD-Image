@@ -31,7 +31,7 @@ M906 E700:700													; set motor currents (mA)
 M84 S0															; Disable motor idle current reduction
 
 ; Axis Limits
-M671 X-20:-20:720:720 Y-55.5:705.5:705.5:-55.5 S1.5				; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
+M671 X-20:-20:720:720 Y-55.5:705.5:705.5:-55.5 S2				; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
 M208 U0 X-63 Y0 Z0 S1											; set axis minima
 M208 U709 X650 Y704 Z1000 S0									; set axis maxima
 
