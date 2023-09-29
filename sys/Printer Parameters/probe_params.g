@@ -8,5 +8,5 @@ if !exists(global.probe_params)
 ; --- Modify values below here ---
 
 ; Probe dock position
-set global.dock_position_x = -27.0
-set global.dock_position_y = 651.0
+set global.dock_position_x = -25.0
+set global.dock_position_y = 626.5
