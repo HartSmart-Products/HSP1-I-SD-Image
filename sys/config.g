@@ -22,30 +22,28 @@ M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axi
 M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
-M584 U1.0 X1.1 Y1.2:1.3 Z0.0:0.1:0.2:0.3 E20.0:21.0				; set drive mapping
-M92 U128.00 X128.00 Y64.00 Z4000.00 E408.50:408.50				; set steps per mm
-M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min)
-M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min)
-M201 U3000.0 X3000.00 Y3000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2)
+M584 U1.0 X1.1 Y1.2:1.3 Z0.0:0.1:0.2:0.3 E20.0:21.0				; set drive mapping 
+M92 U200.00 X200.00 Y200.00 Z6400.00 E408.50:408.50				; set steps per mm 
+M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min) 
+M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min) 
+M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2) 
 M906 E700:700													; set motor currents (mA)
 M84 S0															; Disable motor idle current reduction
 
 ; Axis Limits
-M671 X-20:-20:720:720 Y-55.5:705.5:705.5:-55.5 S2				; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
-M208 U0 X-63 Y0 Z0 S1											; set axis minima
-M208 U709 X650 Y704 Z1000 S0									; set axis maxima
+M671 X-20:-20:720:720 Y-78.5:682.5:682.5:-78.5 S2.0				; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
+M208 U0 X-63 Y0 Z0 S1											; set axis minima 
+M208 U709 X650 Y630 Z1050 S0									; set axis maxima 
 
 ; Endstops
 M574 U2 S1 P"21.out1.tach"										; configure switch-type for U-axis
 M574 X1 S1 P"20.out1.tach"										; configure switch-type for X-axis
-M574 Y1 S1 P"1.io2.in+1.io3.in"							    	; configure switch-type for Y-axis
+M574 Y1 S1 P"1.io2.in+1.io3.in"									; configure switch-type for Y-axis
 
 ; Z-Probe
 M574 Z1 S2														; Configure probe as Z min endstop
-M558 K0 P8 C"20.io0.in" H8 F300 T9000 A3 S0.01					; Setup probe input
-G31 K0 P500 X-32.0 Y47.0 Z4.20									; Set rough probe parameters
-;M558 P5 C"20.io0.out" H5 F120 T30000							; set Z probe type to switch and the dive height + speeds
-;G31 P500 X0 Y0 Z-2.5											; set Z probe trigger value, offset and trigger height
+M558 K0 P8 C"20.io0.in" H5 F450:240 T12000 A3 S0.01				; Setup probe input
+G31 K0 P500 X-32.0 Y47.0 Z4.60									; Set rough probe parameters
 M557 X30:600 Y80:600 P7							    			; define mesh grid
 
 ; Heaters
@@ -99,9 +97,9 @@ M955 P21.0 I56													; righ toolhead accelerometer
 M308 S10 Y"mcu-temp" A"Primary 6XD MCU"							; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"			; defines sensor 11 as MCU temperature sensor
 M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"			; defines sensor 12 as MCU temperature sensor
-M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"	; defines sensor 13 as stepper driver temperature sensor
+M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"			; defines sensor 13 as stepper driver temperature sensor
 M308 S14 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"			; defines sensor 14 as MCU temperature sensor
-M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"	; defines sensor 15 as stepper driver temperature sensor
+M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"		; defines sensor 15 as stepper driver temperature sensor
 
 ; Miscellaneous
 M501															; load saved parameters from non-volatile memory
