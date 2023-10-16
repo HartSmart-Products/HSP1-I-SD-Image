@@ -12,18 +12,19 @@ M83																; ...but relative extruder moves
 G4 S2
 
 ; Drives
-M569 P1.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.0 goes forwards (U-axis)
-M569 P1.1 S1 R0 T3.0:3.0:5.0:0									; phycical drive 1.1               (X-axis)
-M569 P1.2 S0 R0 T3.0:3.0:5.0:0									; physical drive 1.2 goes forwards (Y-axis)
-M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.2               (Y-Axis)
-M569 P0.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.0 goes forwards (Z-axis, Front-Left)
-M569 P0.1 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.1 goes forwards (Z-axis, Rear-Left)
-M569 P0.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right
-M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
+M569 P0.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.0 goes forwards (U-axis)
+M569 P0.1 S1 R0 T3.0:3.0:5.0:0									; phycical drive 1.1               (X-axis)
+M569 P0.2 S0 R0 T3.0:3.0:5.0:0									; physical drive 1.2 goes forwards (Y-axis)
+M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.2               (Y-Axis)
+M569 P1.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.0 goes forwards (Z-axis, Front-Left)
+M569 P1.1 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.1 goes forwards (Z-axis, Rear-Left)
+M569 P1.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right
+M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
-M584 U1.0 X1.1 Y1.2:1.3 Z0.0:0.1:0.2:0.3 E20.0:21.0				; set drive mapping 
-M92 U200.00 X200.00 Y200.00 Z6400.00 E408.50:408.50				; set steps per mm 
+M584 U0.0 X0.1 Y0.2:0.3 Z1.0:1.1:1.2:1.3 E20.0:21.0				; set drive mapping 
+M350 E16:16 I0													; set extruder drive microstepping
+M92 U200.00 X200.00 Y200.00 Z6400.00 E404.70:404.70				; set steps per mm 
 M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min) 
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min) 
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2) 
@@ -38,7 +39,7 @@ M208 U709 X650 Y630 Z1050 S0									; set axis maxima
 ; Endstops
 M574 U2 S1 P"21.out1.tach"										; configure switch-type for U-axis
 M574 X1 S1 P"20.out1.tach"										; configure switch-type for X-axis
-M574 Y1 S1 P"1.io2.in+1.io3.in"									; configure switch-type for Y-axis
+M574 Y1 S1 P"0.io2.in+0.io3.in"									; configure switch-type for Y-axis
 
 ; Z-Probe
 M574 Z1 S2														; Configure probe as Z min endstop
@@ -47,8 +48,8 @@ G31 K0 P500 X-32.0 Y47.0 Z4.60									; Set rough probe parameters
 M557 X30:600 Y80:600 P7							    			; define mesh grid
 
 ; Heaters
-M308 S0 P"temp0" Y"thermistor" T100000 B4138					; configure sensor 0 as thermistor on pin temp0
-M950 H0 Q10 C"out3" T0											; create bed heater output on out3 and map it to sensor 0
+M308 S0 P"0.temp0" Y"thermistor" T100000 B4138					; configure sensor 0 as thermistor on pin temp0
+M950 H0 Q10 C"0.out3" T0											; create bed heater output on out3 and map it to sensor 0
 M307 H0 B0 S1.00												; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0															; map heated bed to heater 0
 M143 H0 S120													; set temperature limit for heater 0 to 120C
