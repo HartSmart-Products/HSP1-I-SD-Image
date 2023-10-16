@@ -77,13 +77,13 @@ M106 P3 C"Airpump secondary" S0 H-1								; (BERDAIR) set fan 3 name and value.
 ; Tools
 M563 P0 D0 H1 F2 S"Left"										; define tool 0
 G10 P0 X0 Y0 Z0													; set tool 0 axis offsets
-M568 P0 R0 S0														; set initial tool 0 active and standby temperatures to 0C
-M591 D0 P3 C"20.io1.in" S1										; extruder 0 filament monitor
+M568 P0 R0 S0													; set initial tool 0 active and standby temperatures to 0C
+M591 D0 P3 C"20.io1.in" S1 L{8.003 * pi} R80:120				; extruder 0 filament monitor
 
 M563 P1 D1 X3 H2 F3 S"Right"									; define tool 1
 G10 P1 U-0.6 Y0.3 Z0											; set tool 1 axis offsets
 M568 P1 R0 S0													; set initial tool 1 active and standby temperatures to 0C
-M591 D1 P3 C"21.io1.in" S1										; extruder 1 filament monitor
+M591 D1 P3 C"21.io1.in" S1 L{7.999 * pi} R80:120				; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 L0 S"Duplicator"					; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U-320 S0 R0										; set tool offsets and temperatures
