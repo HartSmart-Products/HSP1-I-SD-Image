@@ -58,13 +58,12 @@ M143 H0 S120													; set temperature limit for heater 0 to 120C
 M308 S1 P"20.temp0" Y"pt1000"									; sensor 1 (toolboard)
 M950 H1 C"20.out0" T1											; create heater 1 and map sensor 1 (toolboard)
 M307 H1 B0 S0.80												; disable bang-bang mode for heater  and set PWM limit
-M143 H1 S320													; set temperature limit for heater 1 to 280C
 M143 H1 S305													; set temperature limit for heater 1 to 305C
 
 M308 S2 P"21.temp0" Y"pt1000"									; sensor 2 (toolboard)
 M950 H2 C"21.out0" T2											; create heater 2 and map sensor 2 (toolboard)
 M307 H2 B0 S0.80												; disable bang-bang mode for heater  and set PWM limit
-M143 H2 S320													; set temperature limit for heater 2 to 280C
+M143 H2 S305													; set temperature limit for heater 2 to 305C
 
 ; Fans
 M950 F0 C"20.out2" Q500											; create fan 0 on pin 1.out6 and set its frequency
