@@ -22,13 +22,12 @@ M569 P1.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axi
 M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
-M584 U0.0 X0.1 Y0.2:0.3 Z1.0:1.1:1.2:1.3 E20.0:21.0				; set drive mapping 
-M92 U200.00 X200.00 Y200.00 Z6400.00 E404.70:404.70				; set steps per mm 
-M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min) 
-M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min) 
-M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2) 
-M906 E700:700													; set motor currents (mA)
+M584 U0.0 X0.1 Y0.2:0.3 Z1.0:1.1:1.2:1.3 E20.0:21.0				; set drive mapping
 M350 E16:16 I1													; set extruder drive microstepping
+M92 U200.00 X200.00 Y200.00 Z6400.00 E404.70:404.76				; set steps per mm
+M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min)
+M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min)
+M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2)
 M906 E850:850													; set motor currents (mA)
 M84 S0															; Disable motor idle current reduction
 
