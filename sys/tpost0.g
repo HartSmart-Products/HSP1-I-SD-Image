@@ -2,3 +2,4 @@
 ; called after tool 0 has been selected
 
 M98 P"0:/sys/System Macros/Tool Change/tpost.g"
+;M593 P"zvddd" F42.0 S0.05		; configure input shaping for T0
