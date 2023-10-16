@@ -18,28 +18,29 @@ M569 P0.2 S0 R0 T3.0:3.0:5.0:0									; physical drive 1.2 goes forwards (Y-axi
 M569 P0.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 1.2               (Y-Axis)
 M569 P1.0 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.0 goes forwards (Z-axis, Front-Left)
 M569 P1.1 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.1 goes forwards (Z-axis, Rear-Left)
-M569 P1.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right
+M569 P1.2 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.2 goes forwards (Z-axis, Rear-Right)
 M569 P1.3 S1 R0 T3.0:3.0:5.0:0									; physical drive 0.3 goes forwards (Z-axis, Front-Right)
 M569 P20.0 S0													; physical drive 20.0 goes backwards (E0)
 M569 P21.0 S0													; physical drive 21.0 goes backwards (E1)
 M584 U0.0 X0.1 Y0.2:0.3 Z1.0:1.1:1.2:1.3 E20.0:21.0				; set drive mapping 
-M350 E16:16 I0													; set extruder drive microstepping
 M92 U200.00 X200.00 Y200.00 Z6400.00 E404.70:404.70				; set steps per mm 
 M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00				; set maximum instantaneous speed changes (mm/min) 
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00		; set maximum speeds (mm/min) 
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00			; set accelerations (mm/s^2) 
 M906 E700:700													; set motor currents (mA)
+M350 E16:16 I1													; set extruder drive microstepping
+M906 E850:850													; set motor currents (mA)
 M84 S0															; Disable motor idle current reduction
 
 ; Axis Limits
 M671 X-20:-20:720:720 Y-78.5:682.5:682.5:-78.5 S2.0				; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
-M208 U0 X-63 Y0 Z0 S1											; set axis minima 
-M208 U709 X650 Y630 Z1050 S0									; set axis maxima 
+M208 U0 X-63 Y0 Z0 S1											; set axis minima
+M208 U709 X650 Y640 Z1050 S0									; set axis maxima
 
 ; Endstops
 M574 U2 S1 P"21.out1.tach"										; configure switch-type for U-axis
 M574 X1 S1 P"20.out1.tach"										; configure switch-type for X-axis
-M574 Y1 S1 P"0.io2.in+0.io3.in"									; configure switch-type for Y-axis
+M574 Y1 S1 P"0.io2.in+0.io3.in"							    	; configure switch-type for Y-axis
 
 ; Z-Probe
 M574 Z1 S2														; Configure probe as Z min endstop
@@ -58,6 +59,7 @@ M308 S1 P"20.temp0" Y"pt1000"									; sensor 1 (toolboard)
 M950 H1 C"20.out0" T1											; create heater 1 and map sensor 1 (toolboard)
 M307 H1 B0 S0.80												; disable bang-bang mode for heater  and set PWM limit
 M143 H1 S320													; set temperature limit for heater 1 to 280C
+M143 H1 S305													; set temperature limit for heater 1 to 305C
 
 M308 S2 P"21.temp0" Y"pt1000"									; sensor 2 (toolboard)
 M950 H2 C"21.out0" T2											; create heater 2 and map sensor 2 (toolboard)
@@ -78,12 +80,12 @@ M106 P3 C"Airpump secondary" S0 H-1								; (BERDAIR) set fan 3 name and value.
 M563 P0 D0 H1 F2 S"Left"										; define tool 0
 G10 P0 X0 Y0 Z0													; set tool 0 axis offsets
 M568 P0 R0 S0													; set initial tool 0 active and standby temperatures to 0C
-M591 D0 P3 C"20.io1.in" S1 L{8.003 * pi} R80:120				; extruder 0 filament monitor
+M591 D0 P3 C"20.io1.in" S1 L{8.000 * pi} R80:120				; extruder 0 filament monitor
 
 M563 P1 D1 X3 H2 F3 S"Right"									; define tool 1
 G10 P1 U-0.6 Y0.3 Z0											; set tool 1 axis offsets
 M568 P1 R0 S0													; set initial tool 1 active and standby temperatures to 0C
-M591 D1 P3 C"21.io1.in" S1 L{7.999 * pi} R80:120				; extruder 1 filament monitor
+M591 D1 P3 C"21.io1.in" S1 L{8.000 * pi} R80:120				; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 L0 S"Duplicator"					; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U-320 S0 R0										; set tool offsets and temperatures
@@ -109,7 +111,7 @@ M950 P0 C"0.out4" Q0											; (BOFA)
 M42 P0 S1.0														; (BOFA)
 
 ; Input Shaper
-;M593 P"mzv" F20.0
+M593 P"zvddd" F40.0
 
 ; Execute parameter macros
 M98 P"0:/sys/Printer Parameters/probe_params.g" 
