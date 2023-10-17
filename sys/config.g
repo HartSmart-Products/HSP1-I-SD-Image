@@ -52,8 +52,8 @@ G31 K0 P500 X-32.0 Y47.0 Z{global.probe_z_offset}					; Set rough probe paramete
 M557 X30:600 Y80:600 P7							    				; define mesh grid
 
 ; Heaters
-M308 S0 P"1.temp0" Y"thermistor" T100000 B4138						; configure sensor 0 as thermistor on pin temp0
-M950 H0 Q10 C"1.out3" T0											; create bed heater output on out3 and map it to sensor 0
+M308 S0 P"0.temp0" Y"thermistor" T100000 B4138						; configure sensor 0 as thermistor on pin temp0
+M950 H0 Q10 C"0.out3" T0											; create bed heater output on out3 and map it to sensor 0
 M307 H0 B0 S1.00													; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0																; map heated bed to heater 0
 M143 H0 S120														; set temperature limit for heater 0 to 120C
@@ -73,9 +73,9 @@ M950 F0 C"20.out2" Q500												; create fan 0 on pin 1.out6 and set its freq
 M106 P0 H1 T45														; set fan 0 value. Thermostatic control is turned on
 M950 F1 C"21.out2" Q500												; create fan 1 on pin 1.out7 and set its frequency
 M106 P1 H2 T45														; set fan 1 value. Thermostatic control is turned on
-M950 F2 C"1.out0" Q25000											; (BERDAIR) create fan 2 on pin 0.out0 and set its frequency 
+M950 F2 C"0.out0" Q25000											; (BERDAIR) create fan 2 on pin 0.out0 and set its frequency 
 M106 P2 C"Airpump primary" S0 H-1									; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
-M950 F3 C"1.out1" Q25000											; (BERDAIR) create fan 3 on pin 0.out1 and set its frequency
+M950 F3 C"0.out1" Q25000											; (BERDAIR) create fan 3 on pin 0.out1 and set its frequency
 M106 P3 C"Airpump secondary" S0 H-1									; (BERDAIR) set fan 3 name and value. Thermostatic control is turned off
 
 ; Tools
@@ -109,7 +109,7 @@ M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 a
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
 M911 S10 R11 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"					; set voltage thresholds and actions to run on power loss
-M950 P0 C"1.out4" Q0												; (BOFA)
+M950 P0 C"0.out4" Q0												; (BOFA)
 M42 P0 S1.0															; (BOFA)
 
 ; Input Shaper
