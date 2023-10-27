@@ -1,1 +1,0 @@
-echo "Driver warning from driver: "^{param.B}^"."^{param.D}^" : "^{param.P}^" ,"^{param.S}
