@@ -11,6 +11,10 @@ if !exists(global.tool_params)
 	global t1_fm_diameter = 8.000
 	global t0_e_steps = 400.0
 	global t1_e_steps = 400.0
+	global t0_wiper_x_pos = 0
+	global t0_wiper_y_pos = 0
+	global t1_wiper_x_pos = 0
+	global t1_wiper_y_pos = 0
 	global t0_filament = ""
 	global t1_filament = ""
 
@@ -32,3 +36,9 @@ set global.t1_fm_diameter = 8.000
 ; Extruder steps per mm settings
 set global.t0_e_steps = 404.70
 set global.t1_e_steps = 404.70
+
+; Nozzle wiper positions
+set global.t0_wiper_x_pos = -45.0
+set global.t0_wiper_y_pos = 26.0
+set global.t1_wiper_x_pos = 684.0
+set global.t1_wiper_y_pos = 26.0
