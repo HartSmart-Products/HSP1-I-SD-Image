@@ -29,7 +29,7 @@ M569 P21.0 S0														; physical drive 21.0 goes backwards (E1)
 M584 U0.0 X0.1 Y0.2:0.3 Z1.0:1.1:1.2:1.3 E20.0:21.0					; set drive mapping
 M350 E16:16 I1														; set extruder drive microstepping
 M92 U200.00 X200.00 Y200.00 Z6400.00 E{global.t0_e_steps, global.t1_e_steps}	; set steps per mm
-M566 U240.00 X240.00 Y240.00 Z150.00 E300.00:300.00					; set maximum instantaneous speed changes (mm/min)
+M566 U240.00 X240.00 Y240.00 Z150.00 E900.00:900.00					; set maximum instantaneous speed changes (mm/min)
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00			; set maximum speeds (mm/min)
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E1200.00:1200.00				; set accelerations (mm/s^2)
 M906 E850:850														; set motor currents (mA)
