@@ -2,4 +2,5 @@
 ; called before tool 1 is selected
 ;
 
-M98 P"0:/sys/System Macros/Tool Change/tpre.g"
+M98 P{directories.system^"/System Macros/Tool Change/tpre.g"}
+G1 H2 X{move.axes[0].min} F{global.rapid_speed}	; park the X carriage

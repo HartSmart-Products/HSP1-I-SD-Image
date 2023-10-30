@@ -1,5 +1,5 @@
 ; tpost0.g
 ; called after tool 0 has been selected
 
-M98 P"0:/sys/System Macros/Tool Change/tpost.g"
-;M593 P"zvddd" F42.0 S0.05		; configure input shaping for T0
+M98 P{directories.system^"/System Macros/Tool Change/tpost.g"}
+;M593 P"zvd" F40.0 S0.10		; configure input shaping for T0

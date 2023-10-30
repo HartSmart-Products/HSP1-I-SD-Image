@@ -1,6 +1,7 @@
 ; resume.g
 ; called before a print from SD card is resumed
 
+T-1
 T R1									; Reselect previous tool
 G1 R1 X0 Y0 Z2 F{global.rapid_speed}	; move to 2mm above the resume location
 G1 R1 X0 Y0 Z0 F{7.5*60}				; move to the resume location

@@ -37,7 +37,7 @@ else
 	set global.probe_deployed = false
 
 if !move.axes[0].homed || !move.axes[1].homed ||  !move.axes[3].homed   ; If the printer hasn't been homed, home it
-    M98 P"0:/sys/homexyu.g" 
+    M98 P{directories.system^"/homexyu.g"}
 else
 	G0 U{move.axes[3].max} F{global.rapid_speed}						; get the right tool out of the way
 

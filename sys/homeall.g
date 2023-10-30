@@ -1,7 +1,7 @@
 ; homeall.g
 ; called to home all axes
 ;
-M98 P"0:/sys/homexyu.g" 
+M98 P{directories.system^"/homexyu.g"}
 
 M401									; deploy probe
 if global.probe_deployed == false		; check if the deploy macro completed successfully
