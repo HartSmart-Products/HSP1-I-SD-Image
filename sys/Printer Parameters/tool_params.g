@@ -21,24 +21,20 @@ if !exists(global.tool_params)
 ; --- Modify values below here ---
 
 ; Nozzle diameter settings
-set global.t0_nozzle_diameter = 0.6
-set global.t1_nozzle_diameter = 0.6
+M98 P{directories.system^"/Printer Parameters/Tool/t0_nozzle.g"}
+M98 P{directories.system^"/Printer Parameters/Tool/t1_nozzle.g"}
 
 ; Tool offset settings
-set global.t1_x_offset = 0.0
-set global.t1_y_offset = 0.0
-set global.t1_z_offset = 0.0
+M98 P{directories.system^"/Printer Parameters/Tool/t1_offsets.g"}
 
 ; Filament monitor settings
 set global.t0_fm_diameter = 8.000
 set global.t1_fm_diameter = 8.000
 
 ; Extruder steps per mm settings
-set global.t0_e_steps = 404.70
-set global.t1_e_steps = 404.70
+M98 P{directories.system^"/Printer Parameters/Tool/t0_esteps.g"}
+M98 P{directories.system^"/Printer Parameters/Tool/t1_esteps.g"}
 
 ; Nozzle wiper positions
-set global.t0_wiper_x_pos = -45.0
-set global.t0_wiper_y_pos = 26.0
-set global.t1_wiper_x_pos = 684.0
-set global.t1_wiper_y_pos = 26.0
+M98 P{directories.system^"/Printer Parameters/Tool/t0_wiper_position.g"}
+M98 P{directories.system^"/Printer Parameters/Tool/t1_wiper_position.g"}

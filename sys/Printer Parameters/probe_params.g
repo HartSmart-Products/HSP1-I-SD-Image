@@ -9,8 +9,7 @@ if !exists(global.probe_params)
 ; --- Modify values below here ---
 
 ; Probe dock position
-set global.dock_position_x = -24.7
-set global.dock_position_y = 636.0
+M98 P{directories.system^"/Printer Parameters/Probe/dock_position.g"}
 
 ; Probe offsets
-set global.probe_z_offset = 0.0
+M98 P{directories.system^"/Printer Parameters/Probe/probe_offset.g"}

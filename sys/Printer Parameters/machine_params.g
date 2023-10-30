@@ -11,4 +11,4 @@ if !exists(global.machine_params)
 
 set global.y_axis_skew = 0.0
 
-set global.rapid_speed = 200 * 60
+set global.rapid_speed = 400 * 60
