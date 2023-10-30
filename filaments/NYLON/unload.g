@@ -1,1 +1,1 @@
-M98 P"0:/sys/System Macros/Filament Change/unload_from_nozzle.g" R"NYLON" S240
+M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} R"NYLON" S240
