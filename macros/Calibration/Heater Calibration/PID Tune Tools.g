@@ -4,7 +4,7 @@ var macro_title = "PID Tuning"
 M291 P"This Macro will run PID tuning on both tools. First it will home the machine and move the active tool above the printbed. Please confirm the bed is clear and no collisions will result." R{var.macro_title} S3
 
 if !move.axes[0].homed || !move.axes[1].homed ||  !move.axes[3].homed   ; If the printer hasn't been homed, home it
-    M98 P"0:/sys/homeall.g" 
+    M98 P{directories.system^"/homeall.g"}
 else
 	G90
 	G0 U{move.axes[3].max} F{global.rapid_speed}						; get the right tool out of the way
