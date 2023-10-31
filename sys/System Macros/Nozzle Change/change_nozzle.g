@@ -1,4 +1,6 @@
 if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
+	if param.S != 0 && param.S != 1
+		abort "Invalid tool selected"
 	M568 P{param.S} S0 R0 A0
 	
 	var tool = param.R == 1 ? "Left":"Right"
@@ -28,6 +30,10 @@ if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
 	
 	M291 P"Loosen the nozzle and remove it, then press ""Ok"" to continue." R{var.messageBoxTitle} S2
 	M291 P"Using the included torque wrench, install the new nozzle. Then press ""Ok"" to continue." R{var.messageBoxTitle} S2
+	
+	; Change nozzle diameter in config
+	echo >{directories.system^"/Printer Parameters/Tool/t"^param.S^"_nozzle.g"} {"set global.t"^param.S^"_nozzle_diameter = "^param.R}
+	M98 P{directories.system^"/Printer Parameters/Tool/t"^param.S^"_nozzle.g"}
 	
 	M291 P"Nozzle swap complete, parking the tool and turning it off." R{var.messageBoxTitle} S2
 	T-1
