@@ -3,10 +3,8 @@ if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
 		abort "Invalid tool selected"
 	M568 P{param.S} S0 R0 A0
 	
-	var tool = param.R == 1 ? "Left":"Right"
+	var tool = param.S == 0 ? "Left":"Right"
 	var messageBoxTitle = "Changing the " ^ {var.tool} ^ " Nozzle"
-	
-	; Behavior: Home (if not), then move toolhead to accessible location for nozzle change. Heat up, prompt swap (probably with a timeout), then cool down and deactivate tool.
 	
 	M291 P"Please run cleaning filament through the tool before switching nozzles if you haven't already." R{var.messageBoxTitle} S3
 	M291 P"The printer will now home (if not already) and move the printhead into position." R{var.messageBoxTitle} S3
@@ -25,7 +23,7 @@ if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
 	T{param.S}
 	
 	G90
-	G0 X{param.R == 1 ? 50:600} F{global.rapid_speed}
+	G0 X{param.S == 0 ? 100:550} F{global.rapid_speed}
 	M400
 	
 	M291 P"Loosen the nozzle and remove it, then press ""Ok"" to continue." R{var.messageBoxTitle} S2
