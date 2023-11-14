@@ -88,9 +88,14 @@ M568 P1 R0 S0														; set initial tool 1 active and standby temperatures 
 M591 D1 P3 C"21.io1.in" S1 L{global.t1_fm_diameter * pi} R80:120	; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 S"Duplicator"							; define tool 2, "duplicator mode"
-G10 P2 X0 Y0 U-325 S0 R0											; set tool offsets and temperatures
+G10 P2 X0 Y0 U{-move.axes[0].max/2}									; set tool offsets
 M568 P2 R0 S0														; set initial tool 1 active and standby temperatures to 0C
 M567 P2 E1:1														; set mix ratio 100% on both extruders
+
+M563 P3 D0:1 H1:2 X0:3 F2:3 S"Mirror"								; define tool 2, "duplicator mode"
+G10 P3 X0 Y0 U{-move.axes[0].max}									; set tool offsets
+M568 P3 R0 S0														; set initial tool 1 active and standby temperatures to 0C
+M567 P3 E1:1														; set mix ratio 100% on both extruders
 
 ; Accelerometers
 M955 P20.0 I56														; left toolhead accelerometer
