@@ -18,7 +18,7 @@ if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
 	G0 X{move.axes[0].min} Y10 U{move.axes[3].max}
 	M400
 	
-	M568 P{param.S} S260
+	M568 P{param.S} S280
 	M291 P{"Please wait while the " ^ var.tool ^ " tool is being heated up."} R{var.messageBoxTitle} T5 ; Display message
 	T{param.S}
 	
