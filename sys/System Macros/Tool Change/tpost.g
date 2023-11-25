@@ -5,5 +5,6 @@ M116 P{state.currentTool}	; wait for tool 0 heaters to reach operating temperatu
 if (state.status == "processing" || state.status == "resuming")
 	M98 P{directories.system^"/System Macros/Tool Change/wipe.g"}
 
-M83							; relative extruder movement
-G1 E2 F1800					; extrude 2mm
+if state.status == "processing"
+	M83							; relative extruder movement
+	G1 E2 F1800					; extrude 2mm
