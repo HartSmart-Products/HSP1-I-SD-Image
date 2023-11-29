@@ -1,4 +1,4 @@
-M98 P{directories.system^"/System Macros/Filament Change/load_to_nozzle.g"} R"NYLON" S240
+M98 P{directories.system^"/System Macros/Filament Change/load_to_nozzle.g"} R"NYLON" S250
 if global.filament_loaded == false
 	T-1 P0
 	M99
