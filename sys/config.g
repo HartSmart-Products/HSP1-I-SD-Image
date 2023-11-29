@@ -50,7 +50,7 @@ G31 K0 P500 X-32.0 Y47.0 Z{global.probe_z_offset}					; Set rough probe paramete
 M557 X20:610 Y55:610 P7							    				; define mesh grid
 
 ; Heaters
-M308 S0 P"0.temp0" Y"thermistor" T100000 B4138						; configure sensor 0 as thermistor on pin temp0
+M308 S0 P"0.temp0" Y"thermistor" T100000 B4138 A"Bed Heater"		; configure sensor 0 as thermistor on pin temp0
 M950 H0 Q10 C"0.out3" T0											; create bed heater output on out3 and map it to sensor 0
 M307 H0 B0 S1.00													; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0																; map heated bed to heater 0
