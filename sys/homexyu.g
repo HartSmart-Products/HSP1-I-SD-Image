@@ -1,12 +1,15 @@
 ; homexyu.g
 ; called to home X, Y and U
-;
+var x_length = move.axes[0].max - move.axes[0].min
+var u_length = move.axes[3].max - move.axes[3].min
+var y_length = move.axes[1].max - move.axes[1].min
+
 var LY_driver = move.axes[1].drivers[0]
 var RY_driver = move.axes[1].drivers[1]
 
 G91											; relative positioning
 G1 H2 Z5 F300								; lift Z relative to current position
-G1 H1 X-655 Y-655 U655 F6000				; move quickly to X and Y axis endstops and stop there (first pass)
+G1 H1 X{-(var.x_length*1.1)} Y{-(var.y_length*1.1)} U{-(var.u_length*1.1)} F6000	; move quickly to X and Y axis endstops and stop there (first pass)
 G1 H2 X5 Y5 U-5 F30000						; go back a few mm
 G1 H1 X-10 Y-10 U10 F360					; move slowly to X and Y axis endstops once more (second pass)
 M584 Y{var.LY_driver} V{var.RY_driver} P5	; separate Y axis into two axes
