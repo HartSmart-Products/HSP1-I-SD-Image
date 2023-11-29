@@ -3,4 +3,5 @@
 
 M98 P{directories.system^"/System Macros/Tool Change/tfree.g"}
 
-G1 H2 X{move.axes[0].min} F{global.rapid_speed}	; park the X carriage
+if move.axes[0].homed
+	G1 H2 X{move.axes[0].min} F{global.rapid_speed}	; park the X carriage
