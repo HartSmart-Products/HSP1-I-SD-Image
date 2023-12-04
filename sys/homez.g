@@ -1,6 +1,8 @@
 ; homez.g
 ; called to home the Z axis
 
+M98 P{directories.system^"/System Macros/Change Settings/apply_babysteps.g"}
+
 M401								; deploy probe
 if global.probe_deployed == false	; check if the deploy macro completed successfully
 	abort "Probe deploy error"

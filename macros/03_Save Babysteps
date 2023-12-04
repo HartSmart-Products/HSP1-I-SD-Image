@@ -1,0 +1,16 @@
+var new_trigger_height = sensors.probes[0].triggerHeight - move.axes[2].babystep
+
+if !exists(global.trigger_height_to_apply)
+	global trigger_height_to_apply = var.new_trigger_height
+
+if global.trigger_height_to_apply == sensors.probes[0].triggerHeight
+	if global.trigger_height_to_apply == var.new_trigger_height
+		M291 P"Babysteps have not been saved, there is nothing to apply" R"Babysteps not Saved" T5 ; Display message 
+		M99		; if we have no changes, exit the macro
+		
+set global.trigger_height_to_apply = var.new_trigger_height ; else set new trigger height
+
+; Apply it to the file in case we lose power, but wait to apply it/clear baby steps until Z is homed next.
+echo >{directories.system^"/Printer Parameters/Probe/probe_offset.g"} {"set global.probe_z_offset = "^global.trigger_height_to_apply}
+
+M291 P"Babysteps have been saved. They will be applied during the next homing cycle." R"Babysteps Saved" T5 ; Display message 
