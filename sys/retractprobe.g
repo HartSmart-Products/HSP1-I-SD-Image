@@ -29,7 +29,8 @@
 ;  |                                                                        |
 ;  |________________________________________________________________________| 
 ;
-T-1 P0
+T-1 P0				; deselect the active tool
+M579 U1				; un-invert U axis
 
 if !exists(global.probe_deployed)
 	global probe_deployed = true

@@ -29,7 +29,8 @@
 ;  |                                                                        |
 ;  |________________________________________________________________________| 
 ;
-T-1 P0
+T-1 P0				; deselect the active tool
+M579 U1				; un-invert U axis
 
 if !exists(global.probe_deployed)
 	global probe_deployed = false
@@ -37,7 +38,7 @@ else
 	set global.probe_deployed = false
 
 if !move.axes[0].homed || !move.axes[1].homed ||  !move.axes[3].homed   ; If the printer hasn't been homed, home it
-    M98 P{directories.system^"/homexyu.g"}
+    M98 P"0:/sys/homexyu.g" 
 else
 	G0 U{move.axes[3].max} F{global.rapid_speed}						; get the right tool out of the way
 
