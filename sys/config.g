@@ -34,7 +34,7 @@ M906 E850:850														; set motor currents (mA)
 M84 S0																; Disable motor idle current reduction
 
 ; Axis Limits
-M671 X-20:-20:720:720 Y-78.5:682.5:682.5:-78.5 S2.0					; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
+M671 X-20:-20:720:720 Y-88.5:672.5:672.5:-88.5 S3.0					; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
 M208 U0 X-63 Y0 Z0 S1												; set axis minima
 M208 U709 X650 Y640 Z1050 S0										; set axis maxima
 
@@ -46,7 +46,7 @@ M574 Y1 S1 P"0.io2.in+0.io3.in"							    		; configure switch-type for Y-axis
 ; Z-Probe
 M574 Z1 S2															; Configure probe as Z min endstop
 M558 K0 P8 C"20.io0.in" H5 F450:240 T18000 A3 S0.01					; Setup probe input
-G31 K0 P500 X-32.0 Y47.0 Z{global.probe_z_offset}					; Set rough probe parameters
+G31 K0 P500 X-35.0 Y45.0 Z{global.probe_z_offset}					; Set rough probe parameters
 M557 X20:610 Y55:610 P7							    				; define mesh grid
 
 ; Heaters
@@ -111,7 +111,7 @@ M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 a
 
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
-M911 S10 R11 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"					; set voltage thresholds and actions to run on power loss
+M911 S23.5 R25.0 P"M18 Y Z G90 M83 G1 H2 X{move.axes[0].min} U{move.axes[3].max} E-5 F2400"	; set voltage thresholds and actions to run on power loss
 M950 P0 C"0.out4" Q0												; (BOFA)
 M42 P0 S1.0															; (BOFA)
 
