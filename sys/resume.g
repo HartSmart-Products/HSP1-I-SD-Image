@@ -1,5 +1,6 @@
 ; resume.g
 ; called before a print from SD card is resumed
+M98 P"0:/sys/System Macros/State Recall/recall_heaters.g"
 
 T-1
 T R1									; Reselect previous tool

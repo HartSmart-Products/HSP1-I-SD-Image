@@ -1,5 +1,6 @@
 ; pause.g
 ; called when a print from SD card is paused
+M98 P"0:/sys/System Macros/State Recall/save_heaters.g"
 
 M568 A1			; set current tool to standby
 M83				; relative extrusion
