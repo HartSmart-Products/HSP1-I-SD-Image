@@ -40,7 +40,7 @@ else
 ;G0 U{move.axes[3].max} F{global.rapid_speed}	; get the right tool out of the way
 
 G91												; absolute positioning
-G0 H2 Z10 F3000									; move Z 10mm for clearance above dock.
+G0 H2 Z15 F3000									; move Z 10mm for clearance above dock.
 G90
 
 if sensors.probes[0].value[0]!= 0
@@ -58,10 +58,9 @@ G0 X{global.dock_position_x+30} Y{global.dock_position_y} F3000					; move to th
 G0 X{global.dock_position_x+100} Y{global.dock_position_y} F{global.rapid_speed}; move to the side adjacent to the dock swiping the probe off
 M400																			; wait for moves to finish
 
-G91
-G0 H2 Z-10 F3000              ; move Z back.
 G90
-M400                          ; wait for moves to finish
+G0 H2 Z10 F3000								; move Z back
+M400										; wait for moves to finish
 
 if sensors.probes[0].value[0]!= 1000
     abort "retractprobe: Probe not correctly dropped off in dock!"

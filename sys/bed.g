@@ -3,7 +3,7 @@
 
 M98 P{directories.system^"/System Macros/Change Settings/apply_babysteps.g"}
 
-M561								; clear any bed transform
+G29 S2								; disable heightmap transform
 
 M401								; deploy probe
 if global.probe_deployed == false	; check if the deploy macro completed successfully

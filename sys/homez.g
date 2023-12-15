@@ -1,6 +1,7 @@
 ; homez.g
 ; called to home the Z axis
 
+G29 S2								; disable heightmap transform
 M98 P{directories.system^"/System Macros/Change Settings/apply_babysteps.g"}
 
 M401								; deploy probe

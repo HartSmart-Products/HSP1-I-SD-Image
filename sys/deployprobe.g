@@ -43,7 +43,7 @@ else
 	G0 U{move.axes[3].max} F{global.rapid_speed}						; get the right tool out of the way
 
 G91																		; relative positioning
-G0 H2 Z10 F3000															; move Z 10mm for clearance above dock.
+G0 H2 Z15 F3000															; move Z 10mm for clearance above dock.
 G90																		; absolute positioning
 
 if sensors.probes[0].value[0]!=1000										; if sensor is value other than 1000, the probe is probably already picked up
