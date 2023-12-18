@@ -1,0 +1,19 @@
+; Fill in your wireless network configuration in the provided locations below
+var macro_title = "Wired Network Configuration"
+
+M291 P"Configuring the wired network..." R{var.macro_title} S0 T5
+M552 I0 S0										; Disable wireless interface
+M552 I0 S1										; Enable wireless interface
+
+var wait_time = 0
+var timeout = 30
+
+while network.interfaces[0].actualIP == null	; Wait until we have an IP
+	G4 S2
+	set var.wait_time = var.wait_time + 2
+	
+	if var.wait_time > var.timeout				; If we reach the timeout, abort
+		M291 P"Wired network configuration failed, please check the cable and connection and try again" R{var.macro_title} S1 T0
+		M99
+
+M291 P{"Wired network successfully configured. The IP address is " ^ network.interfaces[0].actualIP} R{var.macro_title} S1 T0

@@ -1,0 +1,25 @@
+; Fill in your wireless network configuration in the provided locations below
+var macro_title = "Wifi Configuration"
+
+M291 P"Configuring the wireless network..." R{var.macro_title} S0 T5
+M552 I1 S0										; Disable wireless interface
+
+; ##### EDIT BELOW #####
+M587 C"US"										; Set interface country
+M587 S"SSID" P"Password"						; Set SSID and Password
+; ##### EDIT ABOVE #####
+
+M552 I1 S1										; Enable wireless interface
+
+var wait_time = 0
+var timeout = 30
+
+while network.interfaces[1].actualIP == null	; Wait until we have an IP
+	G4 S2
+	set var.wait_time = var.wait_time + 2
+	
+	if var.wait_time > var.timeout				; If we reach the timeout, abort
+		M291 P"Wireless network configuration failed, please check the SSID and password and try again" R{var.macro_title} S1 T0
+		M99
+
+M291 P{"Wireless network successfully configured. The IP address is " ^ network.interfaces[1].actualIP} R{var.macro_title} S1 T0
