@@ -17,7 +17,7 @@ M291 P"This Macro will assist with calibrating the tool XY offsets. The machine 
 T-1
 G28													; Home the machine
 
-M561												; Ensure mesh compensation is off
+G29 S2												; Ensure mesh compensation is off
 M290 R0 S0											; Clear babystepping
 G90
 G0 Z{var.z_focus_height} F{7.5*60}					; Position tools as focal point
@@ -25,8 +25,8 @@ G0 X{var.x_base_point} Y{var.y_base_point} F{global.rapid_speed/2}	; Move the le
 M400												; Wait for moves to finish
 
 ; Ask the user to position the CXC on the bed using the alignment guide
+M291 P"For the following steps, use the smaller display for this macro and the larger display to view the camera." R{var.macro_title} S2
 M291 P"Plug the CXC into one of the ports on the side of the machine and open <a href=""https://emberprototypes.github.io/"" target=""_blank"">the CXC online tool</a>." R{var.macro_title} S3
-M291 P"Use the smaller display for this macro and the larger display to view the camera." R{var.macro_title} S2
 
 ; Ask the user to align the tool using on-screen controls
 M291 X1 Y1 P"Using the on-screen controls, adjust the position of the left tool until it is aligned with the reticle." R{var.macro_title} S2
