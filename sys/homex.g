@@ -2,8 +2,8 @@
 ; called to home the X axis
 var x_length = move.axes[0].max - move.axes[0].min
 
-G91										; relative positioning
 T-1 P0									; deselect the active tool
+G91										; relative positioning
 G1 H2 Z10 F3000							; lift Z relative to current position
 G1 H1 H2 X{-(var.x_length*1.1)} F6000	; move quickly to X axis endstop and stop there (first pass)
 G1 H2 X5 F3000							; go back a few mm
