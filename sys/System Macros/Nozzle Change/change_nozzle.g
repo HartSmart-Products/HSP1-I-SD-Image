@@ -14,7 +14,8 @@ if exists(param.S) && exists(param.R) ; S=Tool, R=New nozzle diameter
 
 	T-1
 	G90
-	G0 Z175 F{global.rapid_speed}
+	if move.axes[2].machinePosition < 175
+		G0 Z175 F{global.rapid_speed}
 	G0 X{move.axes[0].min} Y10 U{move.axes[3].max}
 	M400
 	
