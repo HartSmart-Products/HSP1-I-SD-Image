@@ -7,10 +7,10 @@ var t1_z_offset = 0
 M291 P"This Macro will assist with calibrating the probe Z offsets. The machine will now home and move the tools for calibration. Please confirm the bed is clear and no collisions will result." R{var.macro_title} S3
 
 T-1
-G31 Z0									; Temporarily clear the probe offset for calibration
 G28										; Home the machine
+G31 Z0									; Temporarily clear the probe offset for calibration
 
-M561									; Ensure mesh compensation is off
+G29 S2									; Ensure mesh compensation is off
 M290 R0 S0								; Clear babystepping
 G90
 G0 Z10 F{7.5*60}

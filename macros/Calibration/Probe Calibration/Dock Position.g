@@ -1,6 +1,4 @@
-; Advise the user that they should do this process on a mobile device or with a partner.
-; Ask to Home XYU, then move to a point close to the theoretical dock position, display a movement box for XY and prompt the user to position the toolhead at the dock position.
-; Once the user accepts, inform the user that the printer will now move to test deploy the probe. Then stow the probe. Ask if the stow and deploy looks good, then save the position.
+; Macro to aid with setting the dock position on the Euclid probe
 var macro_title = "Probe Dock Position Calibration"
 
 M291 P"This Macro will assist with calibrating the probe dock position. It is recommended to run this macro on a mobile device or with a partner." R{var.macro_title} S3
