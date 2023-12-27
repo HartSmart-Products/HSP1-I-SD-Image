@@ -8,7 +8,7 @@ if exists(param.S) && exists(param.R)
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message 
 	M568 S{param.S} A2			; Set current tool temperature to 205C
 	M116 P{state.currentTool}	; Wait for the temperatures to be reached
-	M291 P"Prepare filament for feeding" R{var.messageBoxTitle} S3
+	M291 P"Prepare filament for feeding" R{var.messageBoxTitle} S3 T300
 	M291 P"Feeding filament..." R{var.messageBoxTitle} T5 ; Display new message
 	M83							; Extruder to relative mode
 	G1 E40 F600					; Feed 40mm of filament
