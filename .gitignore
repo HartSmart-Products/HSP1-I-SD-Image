@@ -4,3 +4,7 @@
 /sys/*.json
 /sys/*.csv
 sys/resurrect.g
+/www*
+/gcodes*
+/menu*
+/firmware*
