@@ -1,8 +1,8 @@
 ; Macro to aid with setting tool XY Offsets
 var macro_title = "Tool XY Offset Calibration"
-var z_focus_height = 32
-var x_base_point = 580
-var y_base_point = 50
+var z_focus_height = 38
+var x_base_point = 325
+var y_base_point = 75
 var t1_x_offset = 0
 var t1_y_offset = 0
 
