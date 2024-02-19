@@ -1,10 +1,10 @@
-if exists(param.S) && exists(param.R)
+if exists(param.S) && exists(param.F)
 	if !exists(global.filament_loaded)
 		global filament_loaded = false
 	else
 		set global.filament_loaded = false
 	
-	var messageBoxTitle = "Loading " ^ {param.R}
+	var messageBoxTitle = "Loading " ^ {param.F}
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message 
 	M568 S{param.S} A2			; Set current tool temperature to 205C
 	M116 P{state.currentTool}	; Wait for the temperatures to be reached

@@ -1,5 +1,5 @@
-if exists(param.S) && exists(param.R)
-	var messageBoxTitle = "Unloading " ^ {param.R}
+if exists(param.S) && exists(param.F)
+	var messageBoxTitle = "Unloading " ^ {param.F}
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message
 	M568 S{param.S} A2			; Heat up the current tool
 	M116 P{state.currentTool}	; Wait for the temperatures to be reached

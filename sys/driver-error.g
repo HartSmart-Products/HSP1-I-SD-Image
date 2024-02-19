@@ -14,7 +14,7 @@ while true ; Check Z motors
 	if move.axes[2].drivers[iterations] == var.driver_with_error
 		if state.status == "processing"
 			M25
-		M291 P"One or more Z axis motors are reporting an error. Axis tramming may need to be redone." R"Motor Error!" S1 T0
+		M291 P"One or more Z axis motors are reporting an error. Axis tramming may need to be redone." A"Motor Error!" S1 T0
 		M99
 		
 while true ; Check X motors
@@ -22,7 +22,7 @@ while true ; Check X motors
 		break
 	
 	if move.axes[0].drivers[iterations] == var.driver_with_error
-		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} R"X"
+		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} A"X"
 		M99
 		
 while true ; Check U motors
@@ -30,7 +30,7 @@ while true ; Check U motors
 		break
 	
 	if move.axes[3].drivers[iterations] == var.driver_with_error
-		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} R"U"
+		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} A"U"
 		M99
 		
 while true ; Check Y motors
@@ -38,5 +38,5 @@ while true ; Check Y motors
 		break
 	
 	if move.axes[1].drivers[iterations] == var.driver_with_error
-		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} R"Y"
+		M98 P{directories.system^"/System Macros/Error Recovery/motor_recovery.g"} A"Y"
 		M99

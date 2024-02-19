@@ -1,1 +1,1 @@
-M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} R"FLEX" S230
+M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} F"FLEX" S230

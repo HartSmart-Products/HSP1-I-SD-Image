@@ -1,4 +1,4 @@
-M98 P{directories.system^"/System Macros/Filament Change/load_to_nozzle.g"} R"HIPS" S230
+M98 P{directories.system^"/System Macros/Filament Change/load_to_nozzle.g"} F"HIPS" S230
 if global.filament_loaded == false
 	T-1 P0
 	M99

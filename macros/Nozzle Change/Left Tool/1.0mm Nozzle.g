@@ -1,1 +1,1 @@
-M98 P{directories.system^"/System Macros/Nozzle Change/change_nozzle.g"} R1.0 S0
+M98 P{directories.system^"/System Macros/Nozzle Change/change_nozzle.g"} N1.0 T0
