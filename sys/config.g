@@ -111,7 +111,7 @@ M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 a
 
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
-M911 S25.0 R26.0 P"G91 M83 G1 Z3 E-5 F450"							; set voltage thresholds and actions to run on power loss
+;M911 S25.0 R26.0 P"G91 M83 G1 Z3 E-5 F450"							; set voltage thresholds and actions to run on power loss
 M950 P0 C"0.out4" Q0												; (BOFA)
 M42 P0 S1.0															; (BOFA)
 
