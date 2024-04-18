@@ -102,7 +102,7 @@ M955 P20.0 I56														; left toolhead accelerometer
 M955 P21.0 I56														; righ toolhead accelerometer
 
 ; Temperature Monitoring
-M308 S10 Y"mcu-temp" A"Primary 6XD MCU"								; defines sensor 10 as MCU temperature sensor
+M308 S10 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"				; defines sensor 11 as MCU temperature sensor
 M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 12 as MCU temperature sensor
 M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"				; defines sensor 13 as stepper driver temperature sensor
