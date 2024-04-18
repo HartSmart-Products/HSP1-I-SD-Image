@@ -1,5 +1,6 @@
 ; stop.g
 ; called when M0 (Stop) is run (e.g. when a print from SD card is cancelled)
+M98 P{directories.system^"/System Macros/Change Settings/reset_filament_monitor_sensitivity.g"}
 
 ; Deselect the active tool
 T-1

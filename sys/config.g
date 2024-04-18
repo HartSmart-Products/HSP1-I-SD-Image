@@ -67,9 +67,9 @@ M307 H2 B0 S0.80													; disable bang-bang mode for heater  and set PWM li
 M143 H2 S305														; set temperature limit for heater 2 to 305C
 
 ; Fans
-M950 F0 C"20.out2+out2.tach" Q500								; create fan 0 and set its frequency
+M950 F0 C"20.out2+out2.tach" Q500									; create fan 0 and set its frequency
 M106 P0 H1 T45														; set fan 0 value. Thermostatic control is turned on
-M950 F1 C"21.out2+out2.tach" Q500								; create fan and set its frequency
+M950 F1 C"21.out2+out2.tach" Q500									; create fan and set its frequency
 M106 P1 H2 T45														; set fan 1 value. Thermostatic control is turned on
 M950 F2 C"0.out0" Q25000											; (BERDAIR) create fan 2 and set its frequency 
 M106 P2 C"Airpump primary" S0 H-1									; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
@@ -80,12 +80,12 @@ M106 P3 C"Airpump secondary" S0 H-1									; (BERDAIR) set fan 3 name and value
 M563 P0 D0 H1 F2 S"Left"											; define tool 0
 G10 P0 X0 Y0 Z0														; set tool 0 axis offsets
 M568 P0 R0 S0														; set initial tool 0 active and standby temperatures to 0C
-M591 D0 P3 C"20.io1.in" S1 L{global.t0_fm_diameter * pi} R80:120	; extruder 0 filament monitor
+M591 D0 P3 C"20.io1.in" S1 L{global.t0_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 0 filament monitor
 
 M563 P1 D1 X3 H2 F3 S"Right"										; define tool 1
 G10 P1 U{global.t1_x_offset} Y{global.t1_y_offset} Z{global.t1_z_offset}	; set tool 1 axis offsets
 M568 P1 R0 S0														; set initial tool 1 active and standby temperatures to 0C
-M591 D1 P3 C"21.io1.in" S1 L{global.t1_fm_diameter * pi} R80:120	; extruder 1 filament monitor
+M591 D1 P3 C"21.io1.in" S1 L{global.t1_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 S"Duplicator"							; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U{-move.axes[0].max/2}									; set tool offsets
