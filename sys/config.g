@@ -31,7 +31,7 @@ M566 U240.00 X240.00 Y240.00 Z150.00 E600.00:600.00					; set maximum instantane
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00			; set maximum speeds (mm/min)
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E4200.00:4200.00				; set accelerations (mm/s^2)
 M906 E850:850														; set motor currents (mA)
-M84 S0																; Disable motor idle current reduction
+;M84 S0																; Disable motor idle current reduction
 
 ; Axis Limits
 M671 X-20:-20:720:720 Y-88.5:672.5:672.5:-88.5 S3.0					; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
@@ -51,7 +51,7 @@ M557 X20:610 Y55:610 P7							    				; define mesh grid
 
 ; Heaters
 M308 S0 P"0.temp0" Y"thermistor" T100000 B4138 A"Bed Heater"		; configure sensor 0 as thermistor on pin temp0
-M950 H0 Q10 C"0.out3" T0											; create bed heater output on out3 and map it to sensor 0
+M950 H0 Q10 C"!0.io5.out" T0										; create bed heater output on io5.out and map it to sensor 0
 M307 H0 B0 S1.00													; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0																; map heated bed to heater 0
 M143 H0 S120														; set temperature limit for heater 0 to 120C
@@ -68,9 +68,9 @@ M143 H2 S305														; set temperature limit for heater 2 to 305C
 
 ; Fans
 M950 F0 C"20.out2+out2.tach" Q500									; create fan 0 and set its frequency
-M106 P0 H1 T45														; set fan 0 value. Thermostatic control is turned on
-M950 F1 C"21.out2+out2.tach" Q500									; create fan and set its frequency
-M106 P1 H2 T45														; set fan 1 value. Thermostatic control is turned on
+M106 P0 C"Left Tool Fan" H1 T45									    ; set fan 0 value. Thermostatic control is turned on
+M950 F1 C"21.out2+out2.tach" Q500									; create fan 1 and set its frequency
+M106 P1 C"Right Tool Fan" H2 T45									; set fan 1 value. Thermostatic control is turned on
 M950 F2 C"0.out0" Q25000											; (BERDAIR) create fan 2 and set its frequency 
 M106 P2 C"Airpump primary" S0 H-1									; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
 M950 F3 C"0.out1" Q25000											; (BERDAIR) create fan 3 and set its frequency
@@ -112,8 +112,12 @@ M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 a
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
 ;M911 S25.0 R26.0 P"G91 M83 G1 Z3 E-5 F450"							; set voltage thresholds and actions to run on power loss
-M950 P0 C"0.out4" Q0												; (BOFA)
-M42 P0 S1.0															; (BOFA)
+M950 P0 C"!0.io6.out" Q0											; (BOFA)
+M42 P0 S1.0														    ; (BOFA)
+M950 F4  C"!0.out3+out3.tach" Q25000								; create fan 0 and set its frequency
+M106 P4 C"Electronics Intake" H10:11 T30:45 L0.60 X1.0				; set fan 0 value. Thermostatic control is turned on
+M950 F5 C"!0.out4+out4.tach" Q25000									; create fan 1 and set its frequency
+M106 P5 C"Electronics Exhaust" H10:11 T30:45 L0.60 X1.0		        ; set fan 1 value. Thermostatic control is turned on
 
 ; Input Shaper
 M593 P"zvd" F40.0 S0.10
