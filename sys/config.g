@@ -72,9 +72,9 @@ M106 P0 C"Left Tool Fan" H1 T45									    ; set fan 0 value. Thermostatic cont
 M950 F1 C"21.out2+out2.tach" Q500									; create fan 1 and set its frequency
 M106 P1 C"Right Tool Fan" H2 T45									; set fan 1 value. Thermostatic control is turned on
 M950 F2 C"0.out0" Q25000											; (BERDAIR) create fan 2 and set its frequency 
-M106 P2 C"Airpump primary" S0 H-1									; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
+M106 P2 C"Airpump primary" B0 S0 H-1								; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
 M950 F3 C"0.out1" Q25000											; (BERDAIR) create fan 3 and set its frequency
-M106 P3 C"Airpump secondary" S0 H-1									; (BERDAIR) set fan 3 name and value. Thermostatic control is turned off
+M106 P3 C"Airpump secondary" B0 S0 H-1								; (BERDAIR) set fan 3 name and value. Thermostatic control is turned off
 
 ; Tools
 M563 P0 D0 H1 F2 S"Left"											; define tool 0
