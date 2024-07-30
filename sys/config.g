@@ -45,9 +45,9 @@ M574 Y1 S1 P"0.io2.in+0.io3.in"							    		; configure switch-type for Y-axis
 
 ; Z-Probe
 M574 Z1 S2															; Configure probe as Z min endstop
-M558 K0 P8 C"20.io0.in" H5 F450:240 T18000 A3 S0.01					; Setup probe input
+M558 K0 P8 C"20.io0.in" H4:1 F450:240 T18000 A4 S0.01				; Setup probe input
 G31 K0 P500 X-35.0 Y45.0 Z{global.probe_z_offset}					; Set rough probe parameters
-M557 X20:610 Y55:610 P7							    				; define mesh grid
+M557 X20:610 Y55:610 P10							    			; define mesh grid
 
 ; Heaters
 M308 S0 P"0.temp0" Y"thermistor" T100000 B4138 A"Bed Heater"		; configure sensor 0 as thermistor on pin temp0
