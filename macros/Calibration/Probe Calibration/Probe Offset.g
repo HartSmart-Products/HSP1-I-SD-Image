@@ -33,7 +33,7 @@ M400									; Wait for moves to finish
 
 M291 Z1 P"Using a piece of paper or ~.004 shim, adjust the position of the tool until there is a slight drag." R{var.macro_title} S2
 
-set var.t1_z_offset = move.axes[2].userPosition
+set var.t1_z_offset = -move.axes[2].userPosition
 M400
 G0 Z10 F{7.5*60}						; Move up
 M400									; Wait for moves to finish
