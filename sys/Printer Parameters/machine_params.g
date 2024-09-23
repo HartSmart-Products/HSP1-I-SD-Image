@@ -14,4 +14,4 @@ set global.y_axis_skew = 0.0
 set global.rapid_speed = 400 * 60
 
 set global.tool_heater_timeout = 5 * 60
-set	global.bed_heater_timeout = 90 * 60
+set	global.bed_heater_timeout = 150 * 60
