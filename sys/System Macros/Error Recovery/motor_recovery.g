@@ -1,5 +1,5 @@
 ; R: Axis with error
-if !exists(A)
+if !exists(param.A)
 	M99
 
 if state.status == "processing"

@@ -6,7 +6,7 @@ var wipe_direction = -1
 var wiper_width = 15
 var wiper_length = 40
 var wipe_speed = 100*60
-var prime_before_wipe_amount = 10
+var prime_before_wipe_amount = 13
 
 if state.currentTool == 0
 	; Set tool 0 wipe settings
