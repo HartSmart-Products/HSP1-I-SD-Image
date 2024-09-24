@@ -21,5 +21,3 @@ G29 S2
 ; Park
 G0 Y600
 
-; Sing
-M98 P{directories.system^"/System Macros/Alert Sounds/print_complete.g"}
