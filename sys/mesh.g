@@ -14,4 +14,5 @@ if heat.heaters[0].state == "active" && var.bed_temp_difference <= var.bedMaxDev
 	
 	M402									; return probe to dock
 else
+	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	M291 P"The bed is not active or has not yet reached the set point. Please ensure it is active and preheated before running this routine." R{var.messageBoxTitle} S1 T5

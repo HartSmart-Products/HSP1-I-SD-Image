@@ -21,9 +21,11 @@ while true
 	G30								; probe the bed and set Z height
 		
 	if move.calibration.initial.deviation < var.max_deviation
+		M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 		M291 P{"The bed has been leveled within " ^ move.calibration.initial.deviation ^ "mm between each corner."} R{var.messageBoxTitle} S1 T5
 		break
 	if iterations >= 5
+		M98 P{directories.system^"/System Macros/Alert Sounds/error.g"}
 		M291 P"Failed to level the bed within 5 iterations, something may be wrong." R{var.messageBoxTitle} S1 T5
 		abort "Failed to level the bed within 5 iterations, something may be wrong."
 		
