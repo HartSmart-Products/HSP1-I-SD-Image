@@ -8,10 +8,12 @@ var t1_y_offset = 0
 
 ; Make sure the bed isn't hot as to not damage the camera
 if heat.heaters[0].current > 35
+	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	M291 P"The build plate is too hot to run this macro. Please turn it off and wait until it is below 35 degrees." R{var.macro_title} S2
 	abort
 
 ; Ask to Home XYU+Z if not homed, then move the left tool into calibration position (don't select it)
+M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"This Macro will assist with calibrating the tool XY offsets. The machine will now home and move the tools for calibration. Please confirm the bed is clear and no collisions will result." R{var.macro_title} S3
 
 T-1
@@ -25,6 +27,7 @@ G0 X{var.x_base_point} Y{var.y_base_point} F{global.rapid_speed/2}	; Move the le
 M400												; Wait for moves to finish
 
 ; Ask the user to position the CXC on the bed using the alignment guide
+M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"For the following steps, use the smaller display for this macro and the larger display to view the camera." R{var.macro_title} S2
 M291 P"Plug the CXC into one of the ports on the side of the machine and open <a href=""https://emberprototypes.github.io/"" target=""_blank"">the CXC online tool</a>." R{var.macro_title} S3
 
@@ -35,6 +38,7 @@ M291 X1 Y1 P"Using the on-screen controls, adjust the position of the left tool 
 set var.x_base_point = move.axes[0].machinePosition
 set var.y_base_point = move.axes[1].machinePosition
 
+M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now move the right tool into position." R{var.macro_title} S2
 
 G0 X{move.axes[0].min} F{global.rapid_speed/2}	; park the X carriage
@@ -48,10 +52,9 @@ M291 U1 Y1 P"Using the on-screen controls, adjust the position of the right tool
 set var.t1_x_offset = var.x_base_point - move.axes[3].machinePosition
 set var.t1_y_offset = var.y_base_point - move.axes[1].machinePosition
 
-;echo "Offsets calculated as X"^var.t1_x_offset^" Y"^var.t1_y_offset
-
 M400
 
+M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"Please remove the CXC from the build area." R{var.macro_title} S2
 
 M291 P"The machine will now park the right tool." R{var.macro_title} S2
@@ -65,4 +68,5 @@ echo >>{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global
 M98 P{directories.system^"/Printer Parameters/Tool/t1_offsets.g"}
 G10 P1 U{global.t1_x_offset} Y{global.t1_y_offset}
 
+M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"The new offsets have now been saved." R{var.macro_title} S2

@@ -1,3 +1,6 @@
+; S: Active temp setpoint
+; F: Filament name
+
 if exists(param.S) && exists(param.F)
 	var messageBoxTitle = "Unloading " ^ {param.F}
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message
@@ -11,6 +14,8 @@ if exists(param.S) && exists(param.F)
 	M400                                                                              ; Wait for the moves to finish
 	M292                                                                              ; Hide the message again
 	M568 A1                                                                           ; Set tool to standby temps
+	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 	M291 P"Remove filament from machine" R{var.messageBoxTitle} S1
 else
+	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	echo "This macro is meant to be run as part of the Duet filament feature"

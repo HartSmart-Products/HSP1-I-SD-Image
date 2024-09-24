@@ -18,17 +18,20 @@ if exists(param.S) && exists(param.F)
 
 	if exists(param.B)
 		M400
+		M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 		M291 P"Would you like to preheat the bed for this material?" R{var.messageBoxTitle} K{"Yes","No"} S4
 		if input == 0
 			M140 S{param.B}
 	
 	M400
-	M291 P"Please keep hands clear while the machine moves to the loading position" R{var.messageBoxTitle} S3 T300
+	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
+	M291 P"Please keep hands clear while the machine moves to the loading position" R"Keep Hands Clear" S3 T300
 	G90
 	G1 H2 X{move.axes[0].min} Y45 U{move.axes[3].max} F{50 * 60}                      ; Move to a good loading location, slowly
 	M400                                                                              ; Wait for moves to complete
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message
 	M116 P{state.currentTool}                                                         ; Wait for the temperatures to be reached
+	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 	M291 P"Prepare filament for feeding" R{var.messageBoxTitle} S3 T300
 	M291 P"Feeding filament..." R{var.messageBoxTitle} T5                             ; Display new message
 	M83                                                                               ; Extruder to relative mode
@@ -39,6 +42,7 @@ if exists(param.S) && exists(param.F)
 		G1 E10 F300                                                                      ; Feed 10mm of filament
 		M400                                                                             ; Wait for moves to complete
 		M292                                                                             ; Hide previous messages
+		M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 		M291 P"Is the filament extruding with the correct color/material?" R{var.messageBoxTitle} K{"Yes","No"} S4
 		if input == 0
 			set var.correctColor = true
@@ -50,6 +54,7 @@ if exists(param.S) && exists(param.F)
 	M568 A1                                                                           ; Set tool to standby temps
 	set global.filament_loaded = true
 else
+	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	echo "This macro is meant to be run as part of the Duet filament feature"
 
 ; New behavior

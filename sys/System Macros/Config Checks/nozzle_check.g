@@ -10,17 +10,21 @@ if exists(param.L)
 
 	if exists(param.S)
 		if global.t1_nozzle_diameter != param.S
+			M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 			M291 P{var.errorMessageRight} R{var.messageBoxTitle} S2
 			abort var.errorMessageRight
 	if global.t0_nozzle_diameter != param.L
+		M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 		M291 P{var.errorMessageLeft} R{var.messageBoxTitle} S2
 		abort var.errorMessageLeft
 	M99
 	
 if exists(param.S)
 	if global.t1_nozzle_diameter != param.S
+		M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 		M291 P{var.errorMessageRight} R{var.messageBoxTitle} S2
 		abort var.errorMessageRight
 	M99
 
+M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 abort "No nozzle diameter passed to nozzle check macro"

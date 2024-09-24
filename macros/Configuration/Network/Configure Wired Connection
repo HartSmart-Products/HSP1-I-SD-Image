@@ -13,6 +13,7 @@ while network.interfaces[0].actualIP == null	; Wait until we have an IP
 	set var.wait_time = var.wait_time + 2
 	
 	if var.wait_time > var.timeout				; If we reach the timeout, abort
+		M98 P{directories.system^"/System Macros/Alert Sounds/error.g"}
 		M291 P"Wired network configuration failed, please check the cable and connection and try again" R{var.macro_title} S1 T0
 		M99
 
