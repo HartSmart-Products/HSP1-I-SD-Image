@@ -12,3 +12,6 @@ G30									; probe the bed and set Z height
 
 if !exists(param.S)					; don't return the probe to the dock if parameter S is provided, otherwise:
 	M402							; return probe to dock
+
+	if global.probe_deployed == true	; check if the retract macro completed successfully
+		abort "Probe retract error"

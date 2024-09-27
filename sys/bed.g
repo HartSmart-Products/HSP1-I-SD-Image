@@ -30,3 +30,6 @@ while true
 		abort "Failed to level the bed within 5 iterations, something may be wrong."
 		
 M402								; return probe to dock
+
+if global.probe_deployed == true	; check if the retract macro completed successfully
+	abort "Probe retract error"
