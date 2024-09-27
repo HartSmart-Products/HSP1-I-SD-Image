@@ -15,7 +15,7 @@ G29 S2                                                   ; Ensure mesh compensat
 M290 R0 S0                                               ; Clear babystepping
 G90
 G0 Z10 F{7.5*60}
-G0 X{var.x_point} Y{var.y_point} F{global.rapid_speed/2} ; Move the left tool to position
+G0 X{var.x_point} Y{var.y_point} F{global.safe_speed}  ; Move the left tool to position
 M400                                                     ; Wait for moves to finish
 
 M564 S0                                                  ; Allow movement beyond limits
@@ -29,7 +29,7 @@ M400                                                     ; Wait for moves to fin
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now move the right tool into position." R{var.macro_title} S2
 
-G0 X{move.axes[0].min} F{global.rapid_speed/2}           ; park the X carriage
+G0 X{move.axes[0].min} F{global.safe_speed}           ; park the X carriage
 G0 U{var.x_point}                                        ; Position the U carriage
 M400                                                     ; Wait for moves to finish
 
@@ -44,7 +44,7 @@ M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now probe the set point." R{var.macro_title} S2
 
 M401                                                     ; Deploy the probe
-G0 X{var.x_point-sensors.probes[0].offsets[0]} Y{var.y_point-sensors.probes[0].offsets[1]} F{global.rapid_speed/2}
+G0 X{var.x_point-sensors.probes[0].offsets[0]} Y{var.y_point-sensors.probes[0].offsets[1]} F{global.safe_speed} 
 G30 S-3                                                  ; Probe and set trigger height
 M400
 M564 S1                                                  ; Disallow movement beyond limits

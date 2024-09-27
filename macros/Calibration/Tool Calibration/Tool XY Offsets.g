@@ -17,14 +17,14 @@ M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"This Macro will assist with calibrating the tool XY offsets. The machine will now home and move the tools for calibration. Please confirm the bed is clear and no collisions will result." R{var.macro_title} S3
 
 T-1
-G28													; Home the machine
+G28                                           ; Home the machine
 
-G29 S2												; Ensure mesh compensation is off
-M290 R0 S0											; Clear babystepping
+G29 S2                                        ; Ensure mesh compensation is off
+M290 R0 S0                                    ; Clear babystepping
 G90
-G0 Z{var.z_focus_height} F{7.5*60}					; Position tools as focal point
-G0 X{var.x_base_point} Y{var.y_base_point} F{global.rapid_speed/2}	; Move the left tool to position
-M400												; Wait for moves to finish
+G0 Z{var.z_focus_height} F{global.safe_speed} ; Position tools as focal point
+G0 X{var.x_base_point} Y{var.y_base_point}    ; Move the left tool to position
+M400                                          ; Wait for moves to finish
 
 ; Ask the user to position the CXC on the bed using the alignment guide
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
@@ -41,9 +41,9 @@ set var.y_base_point = move.axes[1].machinePosition
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now move the right tool into position." R{var.macro_title} S2
 
-G0 X{move.axes[0].min} F{global.rapid_speed/2}	; park the X carriage
-G0 U{var.x_base_point}							; Position the U carriage
-M400											; Wait for moves to finish
+G0 X{move.axes[0].min} F{global.safe_speed}   ; park the X carriage
+G0 U{var.x_base_point}                        ; Position the U carriage
+M400                                          ; Wait for moves to finish
 
 ; Ask the user to align the new tool in the same manner.
 M291 U1 Y1 P"Using the on-screen controls, adjust the position of the right tool until it is aligned with the reticle." R{var.macro_title} S2
@@ -59,7 +59,7 @@ M291 P"Please remove the CXC from the build area." R{var.macro_title} S2
 
 M291 P"The machine will now park the right tool." R{var.macro_title} S2
 
-G0 U{move.axes[3].max} F{global.rapid_speed/2}	; park the U carriage
+G0 U{move.axes[3].max} F{global.safe_speed}   ; park the U carriage
 M400
 
 echo >{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_x_offset = "^var.t1_x_offset}

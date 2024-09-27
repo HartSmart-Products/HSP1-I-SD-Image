@@ -23,11 +23,13 @@ if exists(param.S) && exists(param.F)
 		if input == 0
 			M140 S{param.B}
 	
-	M400
-	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
-	M291 P"Please keep hands clear while the machine moves to the loading position" R"Keep Hands Clear" S3 T300
-	G90
-	G1 H2 X{move.axes[0].min} Y45 U{move.axes[3].max} F{50 * 60}                      ; Move to a good loading location, slowly
+	if move.axes[0].machinePosition != move.axes[0].min || move.axes[1].machinePosition != 45 || move.axes[3].machinePosition != move.axes[3].max
+		M400
+		M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
+		M291 P"Please keep hands clear while the machine moves to the loading position" R"Keep Hands Clear" S3 T300
+		G90
+		G1 H2 X{move.axes[0].min} Y45 U{move.axes[3].max} F{global.safe_speed}            ; Move to a good loading location, slowly
+	
 	M400                                                                              ; Wait for moves to complete
 	M291 P"Please wait while the nozzle is being heated up" R{var.messageBoxTitle} T5 ; Display message
 	M116 P{state.currentTool}                                                         ; Wait for the temperatures to be reached

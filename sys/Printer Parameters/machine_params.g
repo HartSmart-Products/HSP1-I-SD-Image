@@ -4,6 +4,7 @@ if !exists(global.machine_params)
 	global machine_params = null
 	global y_axis_skew = 0
 	global rapid_speed = 0
+	global safe_speed = 0
 	global tool_heater_timeout = 0
 	global bed_heater_timeout = 0
 
@@ -12,6 +13,7 @@ if !exists(global.machine_params)
 set global.y_axis_skew = 0.0
 
 set global.rapid_speed = 400 * 60
+set global.safe_speed = 75 * 60
 
 set global.tool_heater_timeout = 5 * 60
 set	global.bed_heater_timeout = 150 * 60

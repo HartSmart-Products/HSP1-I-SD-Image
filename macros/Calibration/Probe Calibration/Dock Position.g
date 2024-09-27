@@ -8,8 +8,8 @@ M291 P"The X, Y, and U axes will now home and the left tool will be moved near t
 M98 P{directories.system^"/homexyu.g"}
 
 G90
-G0 Y610 F{global.rapid_speed/2}			; Move the gantry near the dock
-M400									; Wait for moves to finish
+G0 Y610 F{global.safe_speed} ; Move the gantry near the dock
+M400                         ; Wait for moves to finish
 
 M291 X1 Y1 P"Position the tool into the dock pickup position so the probe is attached to the toolhead." R{var.macro_title} S2
 
@@ -20,16 +20,16 @@ M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now deploy the probe using the specified position." R{var.macro_title} S2
 
 G91
-G0 X50 F{50*60}							; Slowly move the tool off the probe
+G0 X50 F{global.safe_speed}  ; Slowly move the tool off the probe
 G90
-M401									; Deploy the probe
-M400									; Wait for moves to finish
+M401                         ; Deploy the probe
+M400                         ; Wait for moves to finish
 
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now stow the probe." R{var.macro_title} S2
 
-M402									; Retract the probe
-M400									; Wait for moves to finish
+M402                         ; Retract the probe
+M400                         ; Wait for moves to finish
 
 echo >{directories.system^"/Printer Parameters/Probe/dock_position.g"} {"set global.dock_position_x = "^global.dock_position_x}
 echo >>{directories.system^"/Printer Parameters/Probe/dock_position.g"} {"set global.dock_position_y = "^global.dock_position_y}

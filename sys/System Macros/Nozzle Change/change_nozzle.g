@@ -17,7 +17,7 @@ if exists(param.T) && exists(param.N) ; T=Tool, N=New nozzle diameter
 	G90
 	if move.axes[2].machinePosition < 175
 		G0 Z175 F{global.rapid_speed}
-	G0 X{move.axes[0].min} Y10 U{move.axes[3].max}
+	G0 X{move.axes[0].min} Y10 U{move.axes[3].max} F{global.safe_speed}
 	M400
 	
 	M568 P{param.T} S280
@@ -25,7 +25,7 @@ if exists(param.T) && exists(param.N) ; T=Tool, N=New nozzle diameter
 	T{param.T}
 	
 	G90
-	G0 X{param.T == 0 ? 100:550} F{global.rapid_speed}
+	G0 X{param.T == 0 ? 100:550} F{global.safe_speed} 
 	M400
 	
 	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
