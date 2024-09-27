@@ -71,9 +71,9 @@ M950 F0 C"20.out2+out2.tach" Q500									; create fan 0 and set its frequency
 M106 P0 C"Left Tool Fan" H1 T45									    ; set fan 0 value. Thermostatic control is turned on
 M950 F1 C"21.out2+out2.tach" Q500									; create fan 1 and set its frequency
 M106 P1 C"Right Tool Fan" H2 T45									; set fan 1 value. Thermostatic control is turned on
-M950 F2 C"0.out0" Q25000											; (BERDAIR) create fan 2 and set its frequency 
+M950 F2 C"0.out0" Q500											    ; (BERDAIR) create fan 2 and set its frequency 
 M106 P2 C"Airpump primary" B0 S0 H-1								; (BERDAIR) set fan 2 name and value. Thermostatic control is turned off
-M950 F3 C"0.out1" Q25000											; (BERDAIR) create fan 3 and set its frequency
+M950 F3 C"0.out1" Q500											    ; (BERDAIR) create fan 3 and set its frequency
 M106 P3 C"Airpump secondary" B0 S0 H-1								; (BERDAIR) set fan 3 name and value. Thermostatic control is turned off
 
 ; Tools
@@ -102,7 +102,7 @@ M955 P20.0 I56														; left toolhead accelerometer
 M955 P21.0 I56														; righ toolhead accelerometer
 
 ; Temperature Monitoring
-M308 S10 Y"mcu-temp" A"Primary 6XD MCU"								; defines sensor 10 as MCU temperature sensor
+M308 S10 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"				; defines sensor 11 as MCU temperature sensor
 M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 12 as MCU temperature sensor
 M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"				; defines sensor 13 as stepper driver temperature sensor
