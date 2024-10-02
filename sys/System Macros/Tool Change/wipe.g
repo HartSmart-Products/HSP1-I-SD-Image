@@ -42,6 +42,7 @@ var a_side_u = global.t1_wiper_x_pos + (var.wiper_width/2)
 var b_side_u = global.t1_wiper_x_pos - (var.wiper_width/2)
 
 ; Wipe with settings from above
+M116 P{state.currentTool}
 G90
 M83
 

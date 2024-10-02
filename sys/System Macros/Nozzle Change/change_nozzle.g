@@ -18,12 +18,14 @@ if exists(param.T) && exists(param.N) ; T=Tool, N=New nozzle diameter
 		M291 P"Filament is detected as loaded. We recommend unloading and running cleaning filament through. Would you like to do that now?" R{var.messageBoxTitle} K{"Yes","Unload Only"} S4 J1
 		
 		T{param.T}
+		M116 P{state.currentTool}
 		M702
 	else
 		M291 P"We recommend running cleaning filament through before switching nozzles. Would you like to do that now?" R{var.messageBoxTitle} K{"Yes","No"} S4 J1
 
 	if input == 0
 		T{param.T}
+		M116 P{state.currentTool}
 		M701 S"CLEANING"
 		M702
 		M400
@@ -41,6 +43,7 @@ if exists(param.T) && exists(param.N) ; T=Tool, N=New nozzle diameter
 	M568 P{param.T} S280
 	M291 P{"Please wait while the " ^ var.tool ^ " tool is being heated up."} R{var.messageBoxTitle} T5 ; Display message
 	T{param.T}
+	M116 P{state.currentTool}
 	
 	G90
 	G0 X{param.T == 0 ? 100:550} F{global.safe_speed} 
