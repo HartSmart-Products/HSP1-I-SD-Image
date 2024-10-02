@@ -12,11 +12,11 @@ if exists(param.S) && exists(param.F)
 	var messageBoxTitle = "Loading " ^ {param.F}
 	var standbyTemperature = 100
 	if exists(param.R)
-		set var.standbyTemperature = params.R
+		set var.standbyTemperature = param.R
 
 	M568 S{param.S} R{var.standbyTemperature} A2                                      ; Set current tool temperature to 205C
 
-	if exists(param.B)
+	if exists(param.B) && param.B >= 0
 		M400
 		M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 		M291 P"Would you like to preheat the bed for this material?" R{var.messageBoxTitle} K{"Yes","No"} S4
