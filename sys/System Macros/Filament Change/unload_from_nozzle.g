@@ -16,6 +16,13 @@ if exists(param.S) && exists(param.F)
 	M568 A1                                                                           ; Set tool to standby temps
 	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 	M291 P"Remove filament from machine" R{var.messageBoxTitle} S1
+
+	set global.filament[state.currentTool] = ""
+		
+	var t0Filament = global.filament[0]
+	var t1Filament = global.filament[1]
+	
+	echo >{directories.system^"/Printer Parameters/Tool/filament.g"} {"set global.filament = {"""^var.t0Filament^""","""^var.t1Filament^"""}"}
 else
 	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	echo "This macro is meant to be run as part of the Duet filament feature"

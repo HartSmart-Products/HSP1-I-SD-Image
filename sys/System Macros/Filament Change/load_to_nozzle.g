@@ -54,6 +54,15 @@ if exists(param.S) && exists(param.F)
 	M400                                                                              ; Wait for moves to complete
 	M292                                                                              ; Hide previous messages
 	M568 A1                                                                           ; Set tool to standby temps
+
+	if param.F != "CLEANING"
+		set global.filament[state.currentTool] = param.F
+		
+		var t0Filament = global.filament[0]
+		var t1Filament = global.filament[1]
+	
+		echo >{directories.system^"/Printer Parameters/Tool/filament.g"} {"set global.filament = {"""^var.t0Filament^""","""^var.t1Filament^"""}"}
+
 	set global.filament_loaded = true
 else
 	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}

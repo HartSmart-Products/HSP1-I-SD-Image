@@ -15,6 +15,7 @@ if !exists(global.tool_params)
 	global t0_wiper_y_pos = 0
 	global t1_wiper_x_pos = 0
 	global t1_wiper_y_pos = 0
+	global filament = {"",""}
 	global default_fm_low = 0
 	global default_fm_high = 0
 	global default_fm_override = false
@@ -39,6 +40,9 @@ M98 P{directories.system^"/Printer Parameters/Tool/t1_esteps.g"}
 ; Nozzle wiper positions
 M98 P{directories.system^"/Printer Parameters/Tool/t0_wiper_position.g"}
 M98 P{directories.system^"/Printer Parameters/Tool/t1_wiper_position.g"}
+
+; Filaments
+M98 P{directories.system^"/Printer Parameters/Tool/filament.g"}
 
 ; Filament Monitor default settings
 set global.default_fm_low = 80
