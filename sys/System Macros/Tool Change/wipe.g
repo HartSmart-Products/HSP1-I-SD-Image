@@ -1,3 +1,5 @@
+M98 R0
+
 ; Wipe the nozzle
 var wiper_x = 0
 var wiper_y = 0
