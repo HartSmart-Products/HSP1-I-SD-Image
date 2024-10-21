@@ -102,6 +102,9 @@ M955 P20.0 I56														; left toolhead accelerometer
 M955 P21.0 I56														; righ toolhead accelerometer
 
 ; Temperature Monitoring
+M308 S11 Y"bme280" P"spi.cs2" A"Chamber Temperature"
+M308 S12 Y"bme-pressure" P"S11.1" A"Pressure[hPa]"
+M308 S13 Y"bme-humidity" P"S11.2" A"Humidity[%]"
 M308 S14 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 14 as MCU temperature sensor
 M308 S15 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 15 as MCU temperature sensor
 M308 S16 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"				; defines sensor 16 as MCU temperature sensor
