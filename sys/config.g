@@ -102,24 +102,21 @@ M955 P20.0 I56														; left toolhead accelerometer
 M955 P21.0 I56														; righ toolhead accelerometer
 
 ; Temperature Monitoring
-M308 S10 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 10 as MCU temperature sensor
-M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"				; defines sensor 11 as MCU temperature sensor
-M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 12 as MCU temperature sensor
-M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"				; defines sensor 13 as stepper driver temperature sensor
-M308 S14 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"				; defines sensor 14 as MCU temperature sensor
-M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 as stepper driver temperature sensor
+M308 S14 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 13 as MCU temperature sensor
+M308 S15 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 14 as MCU temperature sensor
+M308 S16 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"				; defines sensor 15 as MCU temperature sensor
 
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
 ;M911 S25.0 R26.0 P"G91 M83 G1 Z3 E-5 F450"							; set voltage thresholds and actions to run on power loss
 M950 P0 C"!0.io6.out" Q0											; (BOFA)
 M42 P0 S1.0														    ; (BOFA)
-M950 F4  C"!0.out3+out3.tach" Q25000								; create fan 4 and set its frequency
-M106 P4 C"Electronics Intake" H10:11 T20:45 L0.40 X1.0				; set fan 4 value. Thermostatic control is turned on
-M950 F5 C"!0.out4+out4.tach" Q25000									; create fan 5 and set its frequency
-M106 P5 C"Electronics Exhaust" H10:11 T20:45 L0.40 X1.0		        ; set fan 5 value. Thermostatic control is turned on
-M950 F6 C"0.out2" Q500									            ; create fan 6 and set its frequency
-M106 P6 C"Toolhead Cooling" H12:14 T20:50 L0.20 X0.8		        ; set fan 6 value. Thermostatic control is turned on
+M950 F4  C"!0.out3+out3.tach" Q25000								; create fan 0 and set its frequency
+M106 P4 C"Electronics Intake" H13 T20:45 L0.40 X1.0				    ; set fan 0 value. Thermostatic control is turned on
+M950 F5 C"!0.out4+out4.tach" Q25000									; create fan 1 and set its frequency
+M106 P5 C"Electronics Exhaust" H13 T20:45 L0.40 X1.0		        ; set fan 1 value. Thermostatic control is turned on
+M950 F6 C"0.out2" Q500									            ; create fan 1 and set its frequency
+M106 P6 C"Toolhead Cooling" H14:15 T20:50 L0.20 X0.8		        ; set fan 1 value. Thermostatic control is turned on
 
 ; Input Shaper
 M593 P"zvd" F40.0 S0.10
