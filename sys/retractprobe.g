@@ -45,7 +45,7 @@ G90
 
 if sensors.probes[0].value[0]!= 0
 	set global.probe_deployed = false
-	M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
+	M98 P{directories.system^"/System Macros/Alert Sounds/error.g"}
     abort "retractprobe: Probe not currently picked up!"
 
 G0 X{global.dock_position_x} Y{global.dock_position_y-70} F{global.rapid_speed}	; move to Dock Re-entry staging position 
