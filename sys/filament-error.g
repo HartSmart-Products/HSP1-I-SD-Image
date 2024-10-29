@@ -45,10 +45,8 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 		G1 E3 F300
 		M400
 		set var.percentTotal = sensors.filamentMonitors[param.D].lastPercentage + var.percentTotal
-		echo {"Percentage at stage "^iterations+1^":"}, sensors.filamentMonitors[param.D].lastPercentage
 	
 	var percent = var.percentTotal/var.extrudeSteps
-	echo "Average percentage from extrusion attempts:", var.percent
 
 	if var.percent < sensors.filamentMonitors[param.D].configured.percentMin || var.percent > sensors.filamentMonitors[param.D].configured.percentMax
 		M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
@@ -57,11 +55,11 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 		M24
 
 elif param.P == 6 ; one of the faults indicated by the LED flashes is present
-    ; 4 flashes: I2C communications error
-    ; 5 flashes: I2C channel is in an incorrect state
-    ; 6 flashes: Magnet not detected.
-    ; 7 flashes: Magnet too weak
-    ; 8 flashes: Magnet too strong
-	set var.messageBoxContent = "The filament monitor is reporting an error."
+    echo "4 flashes: I2C communications error"
+    echo "5 flashes: I2C channel is in an incorrect state"
+    echo "6 flashes: Magnet not detected"
+    echo "7 flashes: Magnet too weak"
+    echo "8 flashes: Magnet too strong"
+	set var.messageBoxContent = "The filament monitor is reporting an error. Check the console for error codes"
 	M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
 	M99
