@@ -19,4 +19,4 @@ while heat.heaters[0].state = "tuning"			; wait for the PID tune to be completed
 
 M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"Finished PID tuning, saving results..." R{var.macro_title} T5
-M500 P10
+M500 P10:31

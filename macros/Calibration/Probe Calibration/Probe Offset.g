@@ -52,9 +52,8 @@ G0 Z10 F{7.5*60}                                         ; Move up
 M402                                                     ; Stow probe
 M400
 
-echo >{directories.system^"/Printer Parameters/Probe/probe_offset.g"} {"set global.probe_z_offset = "^sensors.probes[0].triggerHeight}
 G10 P1 Z{var.t1_z_offset}
-M500 P10
+M500 P10:31
 
 M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"The new offsets have now been saved." R{var.macro_title} S2

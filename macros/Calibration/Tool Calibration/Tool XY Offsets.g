@@ -63,7 +63,7 @@ G0 U{move.axes[3].max} F{global.safe_speed}   ; park the U carriage
 M400
 
 G10 P1 U{var.t1_x_offset} Y{var.t1_y_offset}
-M500 P10
+M500 P10:31
 
 M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"The new offsets have now been saved." R{var.macro_title} S2
