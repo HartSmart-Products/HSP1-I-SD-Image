@@ -11,6 +11,9 @@ if global.trigger_height_to_apply == sensors.probes[0].triggerHeight
 set global.trigger_height_to_apply = var.new_trigger_height ; else set new trigger height
 
 ; Apply it to the file in case we lose power, but wait to apply it/clear baby steps until Z is homed next.
-echo >{directories.system^"/Printer Parameters/Probe/probe_offset.g"} {"set global.probe_z_offset = "^global.trigger_height_to_apply}
+var old_trigger_height = sensors.probes[0].triggerHeight
+G31 L0 Z{global.trigger_height_to_apply}	; Apply new trigger height
+M500 P10:31
+G31 L0 Z{var.old_trigger_height}	; Apply new trigger height
 
 M291 P"Babysteps have been saved. They will be applied during the next homing cycle." R"Babysteps Saved" T5 ; Display message 
