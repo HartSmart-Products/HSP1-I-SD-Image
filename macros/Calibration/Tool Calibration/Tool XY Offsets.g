@@ -41,7 +41,7 @@ set var.y_base_point = move.axes[1].machinePosition
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now move the right tool into position." R{var.macro_title} S2
 
-G0 X{move.axes[0].min} F{global.safe_speed}   ; park the X carriage
+G0 X{global.x_park_position} F{global.safe_speed}   ; park the X carriage
 G0 U{var.x_base_point}                        ; Position the U carriage
 M400                                          ; Wait for moves to finish
 
@@ -59,7 +59,7 @@ M291 P"Please remove the CXC from the build area." R{var.macro_title} S2
 
 M291 P"The machine will now park the right tool." R{var.macro_title} S2
 
-G0 U{move.axes[3].max} F{global.safe_speed}   ; park the U carriage
+G0 U{global.u_park_position} F{global.safe_speed}   ; park the U carriage
 M400
 
 echo >{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_x_offset = "^var.t1_x_offset}
