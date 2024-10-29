@@ -23,9 +23,6 @@ if !exists(global.tool_params)
 M98 P{directories.system^"/Printer Parameters/Tool/t0_nozzle.g"}
 M98 P{directories.system^"/Printer Parameters/Tool/t1_nozzle.g"}
 
-; Tool offset settings
-M98 P{directories.system^"/Printer Parameters/Tool/t1_offsets.g"}
-
 ; Filament monitor settings
 set global.t0_fm_diameter = 8.000
 set global.t1_fm_diameter = 8.000
