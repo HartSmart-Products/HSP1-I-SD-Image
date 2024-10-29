@@ -53,11 +53,8 @@ M402                                                     ; Stow probe
 M400
 
 echo >{directories.system^"/Printer Parameters/Probe/probe_offset.g"} {"set global.probe_z_offset = "^sensors.probes[0].triggerHeight}
-echo >{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_x_offset = "^tools[1].offsets[3]}
-echo >>{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_y_offset = "^tools[1].offsets[1]}
-echo >>{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_z_offset = "^var.t1_z_offset}
-M98 P{directories.system^"/Printer Parameters/Tool/t1_offsets.g"}
-G10 P1 Z{global.t1_z_offset}
+G10 P1 Z{var.t1_z_offset}
+M500 P10
 
 M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"The new offsets have now been saved." R{var.macro_title} S2

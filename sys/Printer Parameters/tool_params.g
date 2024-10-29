@@ -4,9 +4,6 @@ if !exists(global.tool_params)
 	global tool_params = null
 	global t0_nozzle_diameter = 0.0
 	global t1_nozzle_diameter = 0.0
-	global t1_x_offset = 0.0
-	global t1_y_offset = 0.0
-	global t1_z_offset = 0.0
 	global t0_fm_diameter = 8.000
 	global t1_fm_diameter = 8.000
 	global t0_e_steps = 400.0

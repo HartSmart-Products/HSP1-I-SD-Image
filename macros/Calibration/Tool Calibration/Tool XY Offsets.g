@@ -62,11 +62,8 @@ M291 P"The machine will now park the right tool." R{var.macro_title} S2
 G0 U{move.axes[3].max} F{global.safe_speed}   ; park the U carriage
 M400
 
-echo >{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_x_offset = "^var.t1_x_offset}
-echo >>{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_y_offset = "^var.t1_y_offset}
-echo >>{directories.system^"/Printer Parameters/Tool/t1_offsets.g"} {"set global.t1_z_offset = "^tools[1].offsets[2]}
-M98 P{directories.system^"/Printer Parameters/Tool/t1_offsets.g"}
-G10 P1 U{global.t1_x_offset} Y{global.t1_y_offset}
+G10 P1 U{var.t1_x_offset} Y{var.t1_y_offset}
+M500 P10
 
 M98 P{directories.system^"/System Macros/Alert Sounds/success.g"}
 M291 P"The new offsets have now been saved." R{var.macro_title} S2
