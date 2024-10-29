@@ -55,11 +55,11 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 		M24
 
 elif param.P == 6 ; one of the faults indicated by the LED flashes is present
-    echo "4 flashes: I2C communications error"
-    echo "5 flashes: I2C channel is in an incorrect state"
-    echo "6 flashes: Magnet not detected"
-    echo "7 flashes: Magnet too weak"
-    echo "8 flashes: Magnet too strong"
+	echo "4 flashes: I2C communications error"
+	echo "5 flashes: I2C channel is in an incorrect state"
+	echo "6 flashes: Magnet not detected"
+	echo "7 flashes: Magnet too weak"
+	echo "8 flashes: Magnet too strong"
 	set var.messageBoxContent = "The filament monitor is reporting an error. Check the console for error codes"
 	M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
 	M99
