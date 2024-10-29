@@ -22,7 +22,7 @@ if exists(param.L)
         M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} F{var.filamentList[var.filamentIndex]} S{var.activeTemperatureList[var.filamentIndex]}
 
 if exists(param.S)
-    var filamentIndex = 0
+    var filamentIndex = #var.filamentList-1
 
     while iterations < #var.filamentList
         if var.filamentList[iterations] == global.filament[state.currentTool]
