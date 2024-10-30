@@ -7,6 +7,9 @@ if exists(param.S) && exists(param.F)
 	M568 S{param.S} A2                                                                ; Heat up the current tool
 	M116 P{state.currentTool}                                                         ; Wait for the temperatures to be reached
 	M291 P"Retracting filament..." R{var.messageBoxTitle} T5                          ; Display another message
+
+	M591 D{state.currentTool} S0                                                      ; Disable filament monitor for feeding
+
 	M83                                                                               ; Extruder to relative mode
 	G1 E-20 F300                                                                      ; Retract 20mm of filament at 300mm/min
 	G1 E-50 F1500                                                                     ; Retract 50mm of filament at 1500mm/min
@@ -23,6 +26,8 @@ if exists(param.S) && exists(param.F)
 	var t1Filament = global.filament[1]
 	
 	echo >{directories.system^"/Printer Parameters/Tool/filament.g"} {"set global.filament = {"""^var.t0Filament^""","""^var.t1Filament^"""}"}
+
+	M591 D{state.currentTool} S2                                                      ; Reenable filament monitor after feeding
 else
 	M98 P{directories.system^"/System Macros/Alert Sounds/invalid.g"}
 	echo "This macro is meant to be run as part of the Duet filament feature"
