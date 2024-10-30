@@ -4,12 +4,14 @@ if global.filament_loaded == false
 	T-1 P0
 	M99
 
-M568 A2                     ; Set active tool to temp
-M116 P{state.currentTool}	; Wait for the temperatures to be reached
+M568 A2                      ; Set active tool to temp
+M116 P{state.currentTool}    ; Wait for the temperatures to be reached
 
-M83							; Extruder to relative mode
-G1 E100 F120				; Feed 100mm of filament
-M82							; Extruder to absolute mode
+M591 D{state.currentTool} S0 ; Disable filament monitor for feeding
+
+M83                          ; Extruder to relative mode
+G1 E100 F120                 ; Feed 100mm of filament
+M82                          ; Extruder to absolute mode
 M400
 
 M702
