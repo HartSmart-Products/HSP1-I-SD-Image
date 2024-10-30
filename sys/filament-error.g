@@ -31,7 +31,7 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 	M25
 
 	G90
-	G1 H2 X{move.axes[0].min} Y45 U{move.axes[3].max} F{global.rapid_speed}	; Move to loading position
+	G1 H2 X{global.x_park_position} Y45 U{global.u_park_position} F{global.rapid_speed}	; Move to loading position
 	M400
 
 	T{param.D}
