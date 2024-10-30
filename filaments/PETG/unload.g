@@ -1,1 +1,1 @@
-M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} F"PETG" S235
+M98 P{directories.filaments^"/PETG/params.g"} L0
