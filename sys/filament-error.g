@@ -18,7 +18,6 @@ if param.P == 2 ; A filament monitor is configured, but no data is being receive
 	; Wiring issue
 	set var.messageBoxContent = "The filament monitor is not reporting filament movement."
 	M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
-	M99
 elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum set in the R value of M591
 	set var.messageBoxTitle = "Filament Feeding Error"
 	if param.P == 4
@@ -35,24 +34,42 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 	M400
 
 	T{param.D}
+	M116 P{state.currentTool}
 
-	var percentTotal = 0
+	var percentTotal = 0.0
 	var extrudeSteps = 4
+	var retries = 2
+	var success = false
 
-	G1 E-10 F1800			; Unload
-	G1 E12 F1200
-	while iterations < var.extrudeSteps
-		G1 E3 F300
-		M400
-		set var.percentTotal = sensors.filamentMonitors[param.D].lastPercentage + var.percentTotal
+	while iterations <= var.retries
+		G1 E-10 F1800                                                                      ; Unload
+		G1 E12 F1200
+		M591 D{param.D} A1
+		G1 E5 F300
+
+		set var.percentTotal = 0.0
+		while iterations < var.extrudeSteps
+			G1 E3 F300
+			M400
+			set var.percentTotal = sensors.filamentMonitors[param.D].lastPercentage + var.percentTotal
+
+		M591 D{param.D} A0
+		var percent = var.percentTotal/var.extrudeSteps
+
+		if var.percent < sensors.filamentMonitors[param.D].configured.percentMin || var.percent > sensors.filamentMonitors[param.D].configured.percentMax
+			echo "Failed", iterations + 1, "filament retry(s) with", var.percent, "percent total extrusion."
+			continue
+		else
+			set var.success = true
+			M24
+			break
 	
-	var percent = var.percentTotal/var.extrudeSteps
-
-	if var.percent < sensors.filamentMonitors[param.D].configured.percentMin || var.percent > sensors.filamentMonitors[param.D].configured.percentMax
-		M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
-		M568 P{param.D} A1
+	if var.success
+		echo "Filament error resolution succeeded, resuming..."
 	else
-		M24
+		M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
+		echo "Filament error resolution failed:", var.messageBoxContent
+		M568 P{param.D} A1
 
 elif param.P == 6 ; one of the faults indicated by the LED flashes is present
 	echo "4 flashes: I2C communications error"
@@ -62,4 +79,3 @@ elif param.P == 6 ; one of the faults indicated by the LED flashes is present
 	echo "8 flashes: Magnet too strong"
 	set var.messageBoxContent = "The filament monitor is reporting an error. Check the console for error codes"
 	M291 P{var.messageBoxContent} R{var.messageBoxTitle} S1 T0
-	M99
