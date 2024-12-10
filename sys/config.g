@@ -116,7 +116,7 @@ M106 P4 C"Electronics Intake" H14 T20:45 L0.40 X1.0				    ; set fan 4 value. Th
 M950 F5 C"!0.out4+out4.tach" Q25000									; create fan 5 and set its frequency
 M106 P5 C"Electronics Exhaust" H14 T20:45 L0.40 X1.0		        ; set fan 5 value. Thermostatic control is turned on
 M950 F6 C"0.out2" Q500									            ; create fan 6 and set its frequency
-M106 P6 C"Toolhead Cooling" H15:16 T20:50 L0.20 X0.8		        ; set fan 6 value. Thermostatic control is turned on
+M106 P6 C"Toolhead Cooling" H15:16 T50:60 L0.20 X0.4		        ; set fan 6 value. Thermostatic control is turned on
 
 ; Input Shaper
 M593 P"zvd" F40.0 S0.10
