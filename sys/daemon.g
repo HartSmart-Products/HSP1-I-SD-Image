@@ -46,3 +46,4 @@ while true
 		set global.bed_timer_active = false
 	
 	G4 S{var.daemon_sleep}
+	
