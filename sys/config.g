@@ -30,7 +30,7 @@ M92 U200.00 X200.00 Y200.00 Z800.00 E{global.t0_e_steps, global.t1_e_steps}	; se
 M566 U240.00 X240.00 Y240.00 Z150.00 E600.00:600.00					; set maximum instantaneous speed changes (mm/min)
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00			; set maximum speeds (mm/min)
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E4200.00:4200.00				; set accelerations (mm/s^2)
-M906 E850:850														; set motor currents (mA)
+M906 E1100:1100														; set motor currents (mA)
 ;M84 S0																; Disable motor idle current reduction
 
 ; Axis Limits
