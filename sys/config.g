@@ -127,3 +127,5 @@ M593 P"zvd" F40.0 S0.10
 
 ; Execute post parameter macros
 M98 P{directories.system^"/Printer Parameters/machine_params.g"}
+
+M929 S1 ; enable logging
