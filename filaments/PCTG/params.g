@@ -1,10 +1,10 @@
 ; L: Load or unload
 
-var filamentList =           {"Push Plastic PCTG", "Generic PCTG"}
-var activeTemperatureList =  {245,                 245}
-var standbyTemperatureList = {160,                 160}
-var bedTemperatureList =     {80,                  80}
-var retractionList =         {2,                   2}
+var filamentList =           {"3D Fuel Pro PCTG", "Push Plastic PCTG", "Generic PCTG"}
+var activeTemperatureList =  {260,                255,                 255}
+var standbyTemperatureList = {190,                190,                 190}
+var bedTemperatureList =     {80,                 80,                  80}
+var retractionList =         {2,                  2,                   2}
 
 if exists(param.L)
     if param.L = 1
