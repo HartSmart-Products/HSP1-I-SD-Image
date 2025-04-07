@@ -27,6 +27,11 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 		; Filament could be jammed and the LGX may be skipping. The filament may also be feeding poorly off the spool, or the filament may be springy.
 		set var.messageBoxContent = "The filament monitor has detected that the filament is feeding too much. This may be caused by a jam or poor filament/spool condition."
 
+	var tool_heater_set_point = 0
+
+	if #tools[state.currentTool].active > 1
+		set var.tool_heater_set_point = tools[state.currentTool].active[param.D]
+
 	M25
 
 	G90
@@ -34,6 +39,8 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 	M400
 
 	T{param.D}
+	if var.tool_heater_set_point > 0
+		M568 S{var.tool_heater_set_point}
 	M116 P{state.currentTool}
 
 	var percentTotal = 0.0
