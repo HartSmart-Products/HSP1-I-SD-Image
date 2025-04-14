@@ -22,7 +22,7 @@ elif param.P == 4 || param.P == 5 ; The movement is above or below the minimum s
 	set var.messageBoxTitle = "Filament Feeding Error"
 	if param.P == 4
 		; Filament could be out, there could be a jam, or the filament may be tangled. The LGX could also be jammed in an intermediate position, or the filament may be springy.
-		set var.messageBoxContent = "The filament monitor has detected that the filament is not feeding enough. This may be caused by a jam or filament tangle."
+		set var.messageBoxContent = "The filament monitor has detected that the filament is not feeding enough. This may be caused by a filament runout, jam, or tangle."
 	elif param.P == 5
 		; Filament could be jammed and the LGX may be skipping. The filament may also be feeding poorly off the spool, or the filament may be springy.
 		set var.messageBoxContent = "The filament monitor has detected that the filament is feeding too much. This may be caused by a jam or poor filament/spool condition."
