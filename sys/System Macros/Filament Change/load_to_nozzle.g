@@ -14,12 +14,14 @@ if exists(param.S) && exists(param.F)
 	if exists(param.R)
 		set var.standbyTemperature = param.R
 
-	M568 S{param.S} R{var.standbyTemperature} A2                                        ; Set current tool temperature to 205C
+	M568 S{param.S} R{var.standbyTemperature} A2
 
 	if !move.axes[0].homed || !move.axes[1].homed || !move.axes[2].homed || !move.axes[3].homed
+		var tool = state.currentTool
 		M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 		M291 P"The machine has not yet been homed, please keep your hands clear while it homes before proceeding." R"Keep Hands Clear" S3 T300
 		M98 P"0:/sys/homeall.g"
+		T{var.tool}
 
 	if exists(param.B) && param.B >= 0
 		M400
