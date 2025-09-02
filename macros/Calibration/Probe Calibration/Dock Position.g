@@ -11,7 +11,9 @@ G90
 G0 Y610 F{global.safe_speed} ; Move the gantry near the dock
 M400                         ; Wait for moves to finish
 
+G91
 M291 X1 Y1 P"Position the tool into the dock pickup position so the probe is attached to the toolhead." R{var.macro_title} S2
+G90
 
 set global.dock_position_x = move.axes[0].machinePosition
 set global.dock_position_y = move.axes[1].machinePosition
