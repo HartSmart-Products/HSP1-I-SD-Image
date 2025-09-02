@@ -14,6 +14,7 @@ G90
 M568 P0 A0
 M568 P1 A0
 M568 P2 A0
+M568 P3 A0
 
 ; Disable Mesh Compensation.
 G29 S2
