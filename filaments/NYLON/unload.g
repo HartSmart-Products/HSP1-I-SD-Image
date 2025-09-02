@@ -1,1 +1,1 @@
-M98 P{directories.system^"/System Macros/Filament Change/unload_from_nozzle.g"} F"NYLON" S260
+M98 P{directories.filaments^"/NYLON/params.g"} L0

@@ -8,48 +8,48 @@ M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"This Macro will assist with calibrating the probe Z offsets. The machine will now home and move the tools for calibration. Please confirm the bed is clear and no collisions will result." R{var.macro_title} S3
 
 T-1
-G28                                                      ; Home the machine
-G31 Z0                                                   ; Temporarily clear the probe offset for calibration
+G28                                                   ; Home the machine
+G31 Z0                                                ; Temporarily clear the probe offset for calibration
 
-G29 S2                                                   ; Ensure mesh compensation is off
-M290 R0 S0                                               ; Clear babystepping
+G29 S2                                                ; Ensure mesh compensation is off
+M290 R0 S0                                            ; Clear babystepping
 G90
 G0 Z10 F{7.5*60}
-G0 X{var.x_point} Y{var.y_point} F{global.safe_speed}  ; Move the left tool to position
-M400                                                     ; Wait for moves to finish
+G0 X{var.x_point} Y{var.y_point} F{global.safe_speed} ; Move the left tool to position
+M400                                                  ; Wait for moves to finish
 
-M564 S0                                                  ; Allow movement beyond limits
+M564 S0                                               ; Allow movement beyond limits
 
 M291 Z1 P"Using a piece of paper or ~.004 shim, adjust the position of the tool until there is a slight drag." R{var.macro_title} S2
 
-G92 Z0                                                   ; Set the current Z position to 0
-G0 Z10 F{7.5*60}                                         ; Move up
-M400                                                     ; Wait for moves to finish
+G92 Z0                                                ; Set the current Z position to 0
+G0 Z10 F{7.5*60}                                      ; Move up
+M400                                                  ; Wait for moves to finish
 
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now move the right tool into position." R{var.macro_title} S2
 
-G0 X{move.axes[0].min} F{global.safe_speed}           ; park the X carriage
-G0 U{var.x_point}                                        ; Position the U carriage
-M400                                                     ; Wait for moves to finish
+G0 X{global.x_park_position} F{global.safe_speed}     ; park the X carriage
+G0 U{var.x_point}                                     ; Position the U carriage
+M400                                                  ; Wait for moves to finish
 
 M291 Z1 P"Using a piece of paper or ~.004 shim, adjust the position of the tool until there is a slight drag." R{var.macro_title} S2
 
 set var.t1_z_offset = -move.axes[2].userPosition
 M400
-G0 Z10 F{7.5*60}                                         ; Move up
-M400                                                     ; Wait for moves to finish
+G0 Z10 F{7.5*60}                                      ; Move up
+M400                                                  ; Wait for moves to finish
 
 M98 P{directories.system^"/System Macros/Alert Sounds/attention.g"}
 M291 P"The machine will now probe the set point." R{var.macro_title} S2
 
-M401                                                     ; Deploy the probe
+M401                                                  ; Deploy the probe
 G0 X{var.x_point-sensors.probes[0].offsets[0]} Y{var.y_point-sensors.probes[0].offsets[1]} F{global.safe_speed} 
-G30 S-3                                                  ; Probe and set trigger height
+G30 S-3                                               ; Probe and set trigger height
 M400
-M564 S1                                                  ; Disallow movement beyond limits
-G0 Z10 F{7.5*60}                                         ; Move up
-M402                                                     ; Stow probe
+M564 S1                                               ; Disallow movement beyond limits
+G0 Z10 F{7.5*60}                                      ; Move up
+M402                                                  ; Stow probe
 M400
 
 echo >{directories.system^"/Printer Parameters/Probe/probe_offset.g"} {"set global.probe_z_offset = "^sensors.probes[0].triggerHeight}

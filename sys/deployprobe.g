@@ -40,7 +40,7 @@ else
 if !move.axes[0].homed || !move.axes[1].homed ||  !move.axes[3].homed   ; If the printer hasn't been homed, home it
     M98 P"0:/sys/homexyu.g" 
 else
-	G0 U{move.axes[3].max} F{global.rapid_speed}						; get the right tool out of the way
+	G0 U{global.u_park_position} F{global.rapid_speed}						; get the right tool out of the way
 
 G91																		; relative positioning
 G0 H2 Z15 F3000															; move Z 10mm for clearance above dock.

@@ -8,7 +8,7 @@ if !move.axes[0].homed || !move.axes[1].homed ||  !move.axes[3].homed ; If the p
     M98 P{directories.system^"/homeall.g"}
 else
 	G90
-	G0 U{move.axes[3].max} F{global.safe_speed}                          ; get the right tool out of the way
+	G0 U{global.u_park_position} F{global.safe_speed}                          ; get the right tool out of the way
 
 G90
 G0 Z15 F300
@@ -24,7 +24,7 @@ while heat.heaters[1].state = "tuning"                                ; wait for
      G4 S2
 
 G0 Z15 F300
-G0 X{move.axes[0].min} F{global.safe_speed}                           ; Move the gantry to an accessible location
+G0 X{global.x_park_position} F{global.safe_speed}                           ; Move the gantry to an accessible location
 G0 U600                                                               ; Move Left tool over bed
 G0 Z3 F300                                                            ; Move Left tool close to bed
 

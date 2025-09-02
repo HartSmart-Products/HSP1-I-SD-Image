@@ -30,7 +30,7 @@ M92 U200.00 X200.00 Y200.00 Z800.00 E{global.t0_e_steps, global.t1_e_steps}	; se
 M566 U240.00 X240.00 Y240.00 Z150.00 E600.00:600.00					; set maximum instantaneous speed changes (mm/min)
 M203 U30000.0 X30000.00 Y30000.00 Z600.00 E6000.00:6000.00			; set maximum speeds (mm/min)
 M201 U5000.0 X5000.00 Y5000.00 Z300.00 E4200.00:4200.00				; set accelerations (mm/s^2)
-M906 E850:850														; set motor currents (mA)
+M906 E1100:1100														; set motor currents (mA)
 ;M84 S0																; Disable motor idle current reduction
 
 ; Axis Limits
@@ -80,12 +80,12 @@ M106 P3 C"Airpump secondary" B0 S0 H-1								; (BERDAIR) set fan 3 name and val
 M563 P0 D0 H1 F2 S"Left"											; define tool 0
 G10 P0 X0 Y0 Z0														; set tool 0 axis offsets
 M568 P0 R0 S0														; set initial tool 0 active and standby temperatures to 0C
-M591 D0 P3 C"20.io1.in" S1 L{global.t0_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 0 filament monitor
+M591 D0 P3 C"20.io1.in" S2 L{global.t0_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 0 filament monitor
 
 M563 P1 D1 X3 H2 F3 S"Right"										; define tool 1
 G10 P1 U{global.t1_x_offset} Y{global.t1_y_offset} Z{global.t1_z_offset}	; set tool 1 axis offsets
 M568 P1 R0 S0														; set initial tool 1 active and standby temperatures to 0C
-M591 D1 P3 C"21.io1.in" S1 L{global.t1_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 1 filament monitor
+M591 D1 P3 C"21.io1.in" S2 L{global.t1_fm_diameter * pi} R{global.default_fm_low, global.default_fm_high}	; extruder 1 filament monitor
 
 M563 P2 D0:1 H1:2 X0:3 F2:3 S"Duplicator"							; define tool 2, "duplicator mode"
 G10 P2 X0 Y0 U{-move.axes[0].max/2}									; set tool offsets
@@ -102,12 +102,14 @@ M955 P20.0 I56														; left toolhead accelerometer
 M955 P21.0 I56														; righ toolhead accelerometer
 
 ; Temperature Monitoring
-M308 S10 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 10 as MCU temperature sensor
-M308 S11 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"				; defines sensor 11 as MCU temperature sensor
-M308 S12 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 12 as MCU temperature sensor
-M308 S13 Y"drivers" P"20.dummy" A"Left Toolhead Driver"				; defines sensor 13 as stepper driver temperature sensor
-M308 S14 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"				; defines sensor 14 as MCU temperature sensor
-M308 S15 Y"drivers" P"21.dummy" A"Right Toolhead Driver"			; defines sensor 15 as stepper driver temperature sensor
+M308 S10 P"0.temp1" Y"thermistor" T100000 B4388 C7.06e-8 A"Spar Temperature"
+M308 S11 Y"bme280" P"spi.cs2" A"Chamber Temperature"
+M308 S12 Y"bme-pressure" P"S11.1" A"Pressure[hPa]"
+M308 S13 Y"bme-humidity" P"S11.2" A"Humidity[%]"
+M308 S14 Y"mcu-temp" P"0.dummy" A"Primary 6XD MCU"					; defines sensor 14 as MCU temperature sensor
+M308 S15 Y"mcu-temp" P"1.dummy" A"Secondary 6XD MCU"				; defines sensor 15 as MCU temperature sensor
+M308 S16 Y"mcu-temp" P"20.dummy" A"Left Toolhead MCU"				; defines sensor 16 as MCU temperature sensor
+M308 S17 Y"mcu-temp" P"21.dummy" A"Right Toolhead MCU"				; defines sensor 17 as MCU temperature sensor
 
 ; Miscellaneous
 M501																; load saved parameters from non-volatile memory
@@ -115,14 +117,16 @@ M501																; load saved parameters from non-volatile memory
 M950 P0 C"!0.io6.out" Q0											; (BOFA)
 M42 P0 S1.0														    ; (BOFA)
 M950 F4  C"!0.out3+out3.tach" Q25000								; create fan 4 and set its frequency
-M106 P4 C"Electronics Intake" H10:11 T20:45 L0.40 X1.0				; set fan 4 value. Thermostatic control is turned on
+M106 P4 C"Electronics Intake" H14:15 T20:45 L0.40 X1.0				; set fan 4 value. Thermostatic control is turned on
 M950 F5 C"!0.out4+out4.tach" Q25000									; create fan 5 and set its frequency
-M106 P5 C"Electronics Exhaust" H10:11 T20:45 L0.40 X1.0		        ; set fan 5 value. Thermostatic control is turned on
+M106 P5 C"Electronics Exhaust" H14:15 T20:45 L0.40 X1.0		        ; set fan 5 value. Thermostatic control is turned on
 M950 F6 C"0.out2" Q500									            ; create fan 6 and set its frequency
-M106 P6 C"Toolhead Cooling" H12:14 T20:50 L0.20 X0.8		        ; set fan 6 value. Thermostatic control is turned on
+M106 P6 C"Toolhead Cooling" H16:17 T50:60 L0.20 X0.4		        ; set fan 6 value. Thermostatic control is turned on
 
 ; Input Shaper
 M593 P"zvd" F40.0 S0.10
 
 ; Execute post parameter macros
 M98 P{directories.system^"/Printer Parameters/machine_params.g"}
+
+M929 S1 ; enable logging

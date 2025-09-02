@@ -3,6 +3,7 @@ if !exists(param.A)
 	M99
 
 if state.status == "processing"
+	echo param.A, "driver error, pausing..."
 	M25
 else
 	M291 P{"Is the printer clear to home the "^param.A^" axis?"} R"Driver Error!" S3
