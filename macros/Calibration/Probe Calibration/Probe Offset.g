@@ -20,7 +20,9 @@ M400                                                  ; Wait for moves to finish
 
 M564 S0                                               ; Allow movement beyond limits
 
+G91
 M291 Z1 P"Using a piece of paper or ~.004 shim, adjust the position of the tool until there is a slight drag." R{var.macro_title} S2
+G90
 
 G92 Z0                                                ; Set the current Z position to 0
 G0 Z10 F{7.5*60}                                      ; Move up
@@ -33,7 +35,9 @@ G0 X{global.x_park_position} F{global.safe_speed}     ; park the X carriage
 G0 U{var.x_point}                                     ; Position the U carriage
 M400                                                  ; Wait for moves to finish
 
+G91
 M291 Z1 P"Using a piece of paper or ~.004 shim, adjust the position of the tool until there is a slight drag." R{var.macro_title} S2
+G90
 
 set var.t1_z_offset = -move.axes[2].userPosition
 M400

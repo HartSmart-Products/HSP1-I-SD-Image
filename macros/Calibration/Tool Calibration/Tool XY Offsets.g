@@ -32,7 +32,9 @@ M291 P"For the following steps, use the smaller display for this macro and the l
 M291 P"Plug the CXC into one of the ports on the side of the machine and open <a href=""https://emberprototypes.github.io/"" target=""_blank"">the CXC online tool</a>." R{var.macro_title} S3
 
 ; Ask the user to align the tool using on-screen controls
+G91
 M291 X1 Y1 P"Using the on-screen controls, adjust the position of the left tool until it is aligned with the reticle." R{var.macro_title} S2
+G90
 
 ; Once the user accepts, save that position, park the left tool, and move the right tool to that position. (don't select it)
 set var.x_base_point = move.axes[0].machinePosition
